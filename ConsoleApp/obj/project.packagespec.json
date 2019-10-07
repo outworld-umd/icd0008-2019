@@ -1,0 +1,53 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "C:\\Users\\admin\\RiderProjects\\Connect4\\ConsoleApp\\ConsoleApp.csproj",
+    "projectName": "ConsoleApp",
+    "projectPath": "C:\\Users\\admin\\RiderProjects\\Connect4\\ConsoleApp\\ConsoleApp.csproj",
+    "outputPath": "C:\\Users\\admin\\RiderProjects\\Connect4\\ConsoleApp\\obj\\",
+    "projectStyle": "PackageReference",
+    "originalTargetFrameworks": [
+      "netcoreapp2.2"
+    ],
+    "sources": {
+      "https://api.nuget.org/v3/index.json": {}
+    },
+    "frameworks": {
+      "netcoreapp2.2": {
+        "projectReferences": {
+          "C:\\Users\\admin\\RiderProjects\\Connect4\\ConsoleUI\\ConsoleUI.csproj": {
+            "projectPath": "C:\\Users\\admin\\RiderProjects\\Connect4\\ConsoleUI\\ConsoleUI.csproj"
+          },
+          "C:\\Users\\admin\\RiderProjects\\Connect4\\GameEngine\\GameEngine.csproj": {
+            "projectPath": "C:\\Users\\admin\\RiderProjects\\Connect4\\GameEngine\\GameEngine.csproj"
+          },
+          "C:\\Users\\admin\\RiderProjects\\Connect4\\MenuSystem\\MenuSystem.csproj": {
+            "projectPath": "C:\\Users\\admin\\RiderProjects\\Connect4\\MenuSystem\\MenuSystem.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.2": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.2.0, )",
+          "autoReferenced": true
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}
