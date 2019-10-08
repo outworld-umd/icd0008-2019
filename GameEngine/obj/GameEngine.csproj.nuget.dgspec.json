@@ -1,0 +1,55 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\admin\\RiderProjects\\Connect4\\GameEngine\\GameEngine.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\admin\\RiderProjects\\Connect4\\GameEngine\\GameEngine.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\admin\\RiderProjects\\Connect4\\GameEngine\\GameEngine.csproj",
+        "projectName": "GameEngine",
+        "projectPath": "C:\\Users\\admin\\RiderProjects\\Connect4\\GameEngine\\GameEngine.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\admin\\RiderProjects\\Connect4\\GameEngine\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

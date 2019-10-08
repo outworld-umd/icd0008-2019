@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1f2ad36d-db08-4add-a4cb-07de0f57ba03" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../ConsoleApp/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CC1DB133-E97D-4A6F-BEC9-3D52351902CF/60/61f82190/Console.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/GameEngine/Games.cs" />
+        <option value="$PROJECT_DIR$/ConsoleUI/AppTests.cs" />
+        <option value="$PROJECT_DIR$/GameEngine/CellState.cs" />
+        <option value="$PROJECT_DIR$/../ConsoleApp/Program.cs" />
+        <option value="$PROJECT_DIR$/ConsoleApp1/Program.cs" />
+        <option value="$PROJECT_DIR$/MenuSystem/Program.cs" />
+        <option value="$PROJECT_DIR$/MenuSystem/Class1.cs" />
+        <option value="$PROJECT_DIR$/MenuSystem/MenuItem.cs" />
+        <option value="$PROJECT_DIR$/MenuSystem/Menu.cs" />
+        <option value="$PROJECT_DIR$/ConsoleUI/Class1.cs" />
+        <option value="$PROJECT_DIR$/ConsoleUI/GameUI.cs" />
+        <option value="$PROJECT_DIR$/GameEngine/Class1.cs" />
+        <option value="$PROJECT_DIR$/GameEngine/Cell.cs" />
+        <option value="$PROJECT_DIR$/ConsoleUI/GameInterface.cs" />
+        <option value="$PROJECT_DIR$/ConsoleApp/Program.cs" />
+        <option value="$PROJECT_DIR$/GameEngine/Game.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\Users\admin\RiderProjects\Connect4\.idea\.idea.Connect4\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/.idea.Connect4/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/.idea.Connect4/.idea/indexLayout.xml" />
+        <option value="$PROJECT_DIR$/.idea/.gitignore" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ReOg6rHUhnRlOegC7gCcrZ3Nse" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected=".NET Project.ConsoleApp">
+    <configuration name="ConsoleApp" type="DotNetProject" factoryName=".NET Project" temporary="true">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/ConsoleApp/ConsoleApp.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value=".NETCoreApp,Version=v2.2" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConsoleApp1" type="DotNetProject" factoryName=".NET Project" temporary="true">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/ConsoleApp1/ConsoleApp1.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value=".NETCoreApp,Version=v2.2" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Default" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="None" />
+      <option name="PROJECT_TFM" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue=".NET Project.ConsoleApp" />
+        <item itemvalue=".NET Project.ConsoleApp1" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1f2ad36d-db08-4add-a4cb-07de0f57ba03" name="Default Changelist" comment="" />
+      <created>1570024203613</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1570024203613</updated>
+      <workItem from="1570024206884" duration="1008000" />
+      <workItem from="1570025965874" duration="215000" />
+      <workItem from="1570029592766" duration="17037000" />
+      <workItem from="1570099179231" duration="8596000" />
+      <workItem from="1570297858077" duration="594000" />
+      <workItem from="1570475220067" duration="1008000" />
+      <workItem from="1570476759642" duration="31000" />
+      <workItem from="1570560598362" duration="488000" />
+    </task>
+    <task id="LOCAL-00001" summary="13.10 task done">
+      <created>1570475757789</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1570475757789</updated>
+    </task>
+    <task id="LOCAL-00002" summary="13.10 done">
+      <created>1570560707727</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1570560707727</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
+    <MESSAGE value="13.10 task done" />
+    <MESSAGE value="13.10 done" />
+    <option name="LAST_COMMIT_MESSAGE" value="13.10 done" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="640" y="255" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" />
+    <state x="640" y="255" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/1920.1080" />
+    <state x="690" y="439" key="GitCloneDialog" />
+    <state x="690" y="439" key="GitCloneDialog/1920.1080" />
+    <state width="1877" height="448" key="GridCell.Tab.0.bottom" />
+    <state width="1877" height="448" key="GridCell.Tab.0.bottom/1920.1080" />
+    <state width="1877" height="448" key="GridCell.Tab.0.center" />
+    <state width="1877" height="448" key="GridCell.Tab.0.center/1920.1080" />
+    <state width="1877" height="448" key="GridCell.Tab.0.left" />
+    <state width="1877" height="448" key="GridCell.Tab.0.left/1920.1080" />
+    <state width="1877" height="448" key="GridCell.Tab.0.right" />
+    <state width="1877" height="448" key="GridCell.Tab.0.right/1920.1080" />
+    <state x="555" y="161" key="Rider.ProjectTemplateDialog.Size" />
+    <state x="555" y="161" key="Rider.ProjectTemplateDialog.Size/1920.1080" />
+    <state x="445" y="162" key="SettingsEditor" />
+    <state x="445" y="162" key="SettingsEditor/1920.1080" />
+    <state x="626" y="375" key="Vcs.Push.Dialog" />
+    <state x="626" y="375" key="Vcs.Push.Dialog/1920.1080" />
+    <state x="640" y="274" key="WebReferenceSession.Dialog" />
+    <state x="640" y="274" key="WebReferenceSession.Dialog/1920.1080" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" suspend="NONE" type="DotNet Exception Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

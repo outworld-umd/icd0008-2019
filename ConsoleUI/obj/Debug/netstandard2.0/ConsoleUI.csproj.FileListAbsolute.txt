@@ -1,0 +1,14 @@
+C:\Users\admin\RiderProjects\Connect4\ConsoleUI\bin\Debug\netstandard2.0\ConsoleUI.deps.json
+C:\Users\admin\RiderProjects\Connect4\ConsoleUI\bin\Debug\netstandard2.0\ConsoleUI.dll
+C:\Users\admin\RiderProjects\Connect4\ConsoleUI\bin\Debug\netstandard2.0\ConsoleUI.pdb
+C:\Users\admin\RiderProjects\Connect4\ConsoleUI\obj\Debug\netstandard2.0\ConsoleUI.csprojAssemblyReference.cache
+C:\Users\admin\RiderProjects\Connect4\ConsoleUI\obj\Debug\netstandard2.0\ConsoleUI.csproj.CoreCompileInputs.cache
+C:\Users\admin\RiderProjects\Connect4\ConsoleUI\obj\Debug\netstandard2.0\ConsoleUI.AssemblyInfoInputs.cache
+C:\Users\admin\RiderProjects\Connect4\ConsoleUI\obj\Debug\netstandard2.0\ConsoleUI.AssemblyInfo.cs
+C:\Users\admin\RiderProjects\Connect4\ConsoleUI\obj\Debug\netstandard2.0\ConsoleUI.dll
+C:\Users\admin\RiderProjects\Connect4\ConsoleUI\obj\Debug\netstandard2.0\ConsoleUI.pdb
+C:\Users\admin\RiderProjects\Connect4\ConsoleUI\bin\Debug\netstandard2.0\GameEngine.dll
+C:\Users\admin\RiderProjects\Connect4\ConsoleUI\bin\Debug\netstandard2.0\MenuSystem.dll
+C:\Users\admin\RiderProjects\Connect4\ConsoleUI\bin\Debug\netstandard2.0\GameEngine.pdb
+C:\Users\admin\RiderProjects\Connect4\ConsoleUI\bin\Debug\netstandard2.0\MenuSystem.pdb
+C:\Users\admin\RiderProjects\Connect4\ConsoleUI\obj\Debug\netstandard2.0\ConsoleUI.csproj.CopyComplete
