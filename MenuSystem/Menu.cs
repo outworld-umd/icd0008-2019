@@ -4,6 +4,13 @@ using System.Collections.Generic;
 namespace MenuSystem {
 
     public class Menu {
+
+        private const string MenuCommandExit = "X";
+        private const string MenuCommandReturnToPrevious = "P";
+        private const string MenuCommandReturnToMain = "M";
+        private const string MenuSettings = "A";
+
+        private Dictionary<string, MenuItem> _menuItemsDictionary = new Dictionary<string, MenuItem>();
         private readonly int _menuLevel;
 
         public Menu(int menuLevel = 0) {
@@ -12,18 +19,22 @@ namespace MenuSystem {
 
         public string Title { get; set; }
 
-        public List<MenuItem> MenuItems { get; set; }
-            = new List<MenuItem>();
-
-        public MenuItem MenuItemExit { get; set; }
-            = new MenuItem {Command = "X", Title = "Exit"};
-
-        public MenuItem MenuItemReturnToPrevious { get; set; }
-            = new MenuItem {Command = "P", Title = "Return to Previous Menu"};
-
-        public MenuItem MenuItemReturnToMain { get; set; }
-            = new MenuItem {Command = "M", Title = "Return to Main Menu"};
-
+        public Dictionary<string, MenuItem> MenuItemsDictionary {
+            get => _menuItemsDictionary;
+            set {
+                _menuItemsDictionary = value;
+                _menuItemsDictionary.Add("",
+                    new MenuItem{});
+                if (_menuLevel >= 2)
+                    _menuItemsDictionary.Add(MenuCommandReturnToPrevious,
+                        new MenuItem {Title = "Return to Previous Menu"});
+                if (_menuLevel >= 1)
+                    _menuItemsDictionary.Add(MenuCommandReturnToMain,
+                        new MenuItem {Title = "Return to Main Menu"});
+                _menuItemsDictionary.Add(MenuCommandExit,
+                    new MenuItem {Title = "Exit"});
+            }
+        }
 
         public string Run() {
             var command = "";
@@ -31,25 +42,38 @@ namespace MenuSystem {
                 Console.Clear();
                 Console.WriteLine(Title);
                 Console.WriteLine("========================");
-                foreach (var menuItem in MenuItems) Console.WriteLine(menuItem);
-                if (_menuLevel != 0) Console.WriteLine();
-                if (_menuLevel >= 2) Console.WriteLine(MenuItemReturnToPrevious);
-                if (_menuLevel >= 1) Console.WriteLine(MenuItemReturnToMain);
-                Console.WriteLine(MenuItemExit);
-                Console.WriteLine("------------------------");
+
+                foreach (var menuItem in MenuItemsDictionary) {
+                    Console.Write(menuItem.Key);
+                    Console.Write(" ");
+                    Console.WriteLine(menuItem.Value);
+                }
+
+                Console.WriteLine("----------");
                 Console.Write(">");
-                command = Console.ReadLine()?.Trim().ToUpper() ?? "";
+
+                command = Console.ReadLine()?.Trim().ToUpper()?? "";
+
+
                 var returnCommand = "";
-                foreach (var menuItem in MenuItems)
-                    if (menuItem.Command == command && menuItem.CommandToExecute != null) {
-                        returnCommand = menuItem.CommandToExecute(); // menu level 2
-                        break;
-                    }
-                if (returnCommand == MenuItemExit.Command) command = MenuItemExit.Command;
-                if (returnCommand == MenuItemReturnToMain.Command && _menuLevel != 0) command = MenuItemReturnToMain.Command;
-            } while (command != MenuItemExit.Command &&
-                     command != MenuItemReturnToMain.Command &&
-                     command != MenuItemReturnToPrevious.Command);
+
+                if (MenuItemsDictionary.ContainsKey(command)) {
+                    var menuItem = MenuItemsDictionary[command];
+                    if (menuItem.CommandToExecute != null)
+                        returnCommand = menuItem.CommandToExecute(); // run the command 
+                }
+
+
+                if (returnCommand == MenuCommandExit) command = MenuCommandExit;
+
+                if (returnCommand == MenuCommandReturnToMain)
+                    if (_menuLevel != 0)
+                        command = MenuCommandReturnToMain;
+            } while (command != MenuCommandExit &&
+                     command != MenuCommandReturnToMain &&
+                     command != MenuCommandReturnToPrevious);
+
+
             return command;
         }
     }
