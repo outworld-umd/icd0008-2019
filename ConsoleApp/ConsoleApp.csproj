@@ -12,4 +12,8 @@
       <ProjectReference Include="..\MenuSystem\MenuSystem.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" Version="12.0.3-beta2" />
+    </ItemGroup>
+
 </Project>

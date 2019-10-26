@@ -10,9 +10,8 @@ namespace ConsoleUI
         private static readonly string _horizontalSeparator = "-";
         private static readonly string _centerSeparator = "+";
         public const string NoColumnMessage = "No, no, no! There's no column with this number!";
-        public const string ChoiceQuestion = "in which column do you want to drop the disc?";
+        public const string ChoiceQuestion = "in which column do you want to drop the disc (type X to leave)?";
         public const string ColumnFullMessage = "This column is full!";
-        public const string InputIsNotDigit = "IDI NAHHUI EBANII UROD!";
         
         public static void PrintBoard(Game game)
         {

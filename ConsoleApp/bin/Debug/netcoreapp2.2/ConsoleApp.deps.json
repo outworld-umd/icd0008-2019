@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "0ebf7496edc94210f457020dfbd56205d097243c"
+    "signature": "d6b59bc6839bd5df07dbbe186bc4e82ab5bad309"
   },
   "compilationOptions": {},
   "targets": {
@@ -10,7 +10,8 @@
         "dependencies": {
           "ConsoleUI": "1.0.0",
           "GameEngine": "1.0.0",
-          "MenuSystem": "1.0.0"
+          "MenuSystem": "1.0.0",
+          "Newtonsoft.Json": "12.0.3-beta2"
         },
         "runtime": {
           "ConsoleApp.dll": {}
@@ -21,6 +22,14 @@
           "lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "4.700.19.50410"
+          }
+        }
+      },
+      "Newtonsoft.Json/12.0.3-beta2": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.3.23806"
           }
         }
       },
@@ -64,6 +73,7 @@
       },
       "GameEngine/1.0.0": {
         "dependencies": {
+          "Newtonsoft.Json": "12.0.3-beta2",
           "System.Text.Json": "4.7.0-preview1.19504.10"
         },
         "runtime": {
@@ -89,6 +99,13 @@
       "sha512": "sha512-TniVFaTccXO3C3oCGe0Otq3Ipll78rVHOcvJQKq034k+61Ny4aPCK5UvKxPRJ+/3OxluTs2mYo8wkLD/3n3x7A==",
       "path": "microsoft.bcl.asyncinterfaces/1.1.0-preview1.19504.10",
       "hashPath": "microsoft.bcl.asyncinterfaces.1.1.0-preview1.19504.10.nupkg.sha512"
+    },
+    "Newtonsoft.Json/12.0.3-beta2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CNkBl+FKCsp1Tw7MKCpSOCKfZIElxOOBhG46VnFV2G0hRCC1Cc2UUJDknETNGeymXN1/k6hxd44uGVZvdwyEsQ==",
+      "path": "newtonsoft.json/12.0.3-beta2",
+      "hashPath": "newtonsoft.json.12.0.3-beta2.nupkg.sha512"
     },
     "System.Runtime.CompilerServices.Unsafe/4.7.0-preview1.19504.10": {
       "type": "package",
