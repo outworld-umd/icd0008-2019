@@ -4,13 +4,13 @@ namespace GameEngine {
 
     public class Game {
         
-        private Cell[,] Board { get; set; }
-        public int Height { get; }
-        public int Width { get; }
-        public bool FirstPlayersMove { get; private set; }
+        public Cell[,] Board { get; set; }
+        public int Height { get; set; }
+        public int Width { get; set; }
+        public bool FirstPlayersMove { get; set; }
         private int _lastColumn;
         private int _lastRow;
-        public bool FirstPlayerWinner { get; private set; }
+        public bool FirstPlayerWinner { get; set; }
 
         public Game(int boardHeight = 6, int boardWidth = 7) {
             Height = boardHeight;
@@ -25,13 +25,15 @@ namespace GameEngine {
             return result;
         }
         
-        public bool DropDisc(int column) {
+        public bool DropDisc(int? column) {
+            if (!column.HasValue) return false;
+            var col = column.Value;
             var row = 0;
-            if (Board[row, column] != Cell.Empty) return false;
-            while (row + 1 < Height && Board[row + 1, column] == Cell.Empty) row += 1;
+            if (Board[row, col] != Cell.Empty) return false;
+            while (row + 1 < Height && Board[row + 1, col] == Cell.Empty) row += 1;
             _lastRow = row;
-            _lastColumn = column;
-            Board[row, column] = FirstPlayersMove ? Cell.X : Cell.O;
+            _lastColumn = col;
+            Board[row, col] = FirstPlayersMove ? Cell.X : Cell.O;
             return true;
         }
 
