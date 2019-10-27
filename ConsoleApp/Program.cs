@@ -16,6 +16,7 @@ namespace ConsoleApp {
 
         private static void Main(string[] args) {
             Console.Clear();
+            Console.OutputEncoding = System.Text.Encoding.Unicode;
             _settings = GameConfigHandler.LoadConfig();
             _saveGame = null;
             var menu2 = new Menu(2) {
@@ -57,6 +58,7 @@ namespace ConsoleApp {
 
         private static string NewGame() {
             _saveGame = null;
+            _settings = GameConfigHandler.LoadConfig();
             return PlayGameTwoPlayers();
         }
         

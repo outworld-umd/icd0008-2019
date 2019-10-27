@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Text.Json;
 
@@ -15,12 +16,13 @@ namespace GameEngine {
         }
 
         public static GameSettings LoadConfig(string fileName = FileName) {
-            if (File.Exists(fileName)) {
+            try {
                 var jsonString = File.ReadAllText(fileName);
                 var res = JsonSerializer.Deserialize<GameSettings>(jsonString);
                 return res;
+            } catch (Exception) {
+                return new GameSettings();
             }
-            return new GameSettings();
         }
     }
 
