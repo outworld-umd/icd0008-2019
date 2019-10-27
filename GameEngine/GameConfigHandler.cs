@@ -21,7 +21,7 @@ namespace GameEngine {
                 var res = JsonSerializer.Deserialize<GameSettings>(jsonString);
                 return res;
             } catch (Exception) {
-                return new GameSettings();
+                return null;
             }
         }
     }

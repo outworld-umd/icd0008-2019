@@ -17,7 +17,7 @@ namespace ConsoleApp {
         private static void Main(string[] args) {
             Console.Clear();
             Console.OutputEncoding = System.Text.Encoding.Unicode;
-            _settings = GameConfigHandler.LoadConfig();
+            _settings = GameConfigHandler.LoadConfig() ?? new GameSettings();
             _saveGame = null;
             var menu2 = new Menu(2) {
                 Title = "Choose a game",
@@ -37,13 +37,7 @@ namespace ConsoleApp {
                 MenuItemsDictionary = new Dictionary<string, MenuItem> {
                     {"F", new MenuItem {Title = "Change Width of the Board", CommandToExecute = _settings.ChangeWidth}}, 
                     {"G", new MenuItem {Title = "Change Height of the Board", CommandToExecute = _settings.ChangeHeight}}, 
-                    {"H", new MenuItem {Title = "Reset Default Settings",
-                            CommandToExecute = () => {
-                                _settings = new GameSettings();
-                                GameConfigHandler.SaveConfig(_settings);
-                                return "";
-                            }}
-                    }
+                    {"H", new MenuItem {Title = "Reset Default Settings", CommandToExecute = _settings.SetDefaults}}
                 }
             };
             var menu0 = new Menu {
@@ -58,7 +52,6 @@ namespace ConsoleApp {
 
         private static string NewGame() {
             _saveGame = null;
-            _settings = GameConfigHandler.LoadConfig();
             return PlayGameTwoPlayers();
         }
         
