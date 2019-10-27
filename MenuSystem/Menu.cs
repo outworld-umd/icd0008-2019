@@ -9,9 +9,9 @@ namespace MenuSystem {
         private const string MenuCommandReturnToPrevious = "P";
         private const string MenuCommandReturnToMain = "M";
         private const string MenuSettings = "A";
+        private readonly int _menuLevel;
 
         private Dictionary<string, MenuItem> _menuItemsDictionary = new Dictionary<string, MenuItem>();
-        private readonly int _menuLevel;
 
         public Menu(int menuLevel = 0) {
             _menuLevel = menuLevel;
@@ -24,7 +24,7 @@ namespace MenuSystem {
             set {
                 _menuItemsDictionary = value;
                 _menuItemsDictionary.Add("",
-                    new MenuItem{});
+                    new MenuItem());
                 if (_menuLevel >= 2)
                     _menuItemsDictionary.Add(MenuCommandReturnToPrevious,
                         new MenuItem {Title = "Return to Previous Menu"});
@@ -42,38 +42,27 @@ namespace MenuSystem {
                 Console.Clear();
                 Console.WriteLine(Title);
                 Console.WriteLine("========================");
-
                 foreach (var menuItem in MenuItemsDictionary) {
                     Console.Write(menuItem.Key);
                     Console.Write(" ");
                     Console.WriteLine(menuItem.Value);
                 }
-
                 Console.WriteLine("----------");
                 Console.Write(">");
-
-                command = Console.ReadLine()?.Trim().ToUpper()?? "";
-
-
+                command = Console.ReadLine()?.Trim().ToUpper() ?? "";
                 var returnCommand = "";
-
                 if (MenuItemsDictionary.ContainsKey(command)) {
                     var menuItem = MenuItemsDictionary[command];
                     if (menuItem.CommandToExecute != null)
                         returnCommand = menuItem.CommandToExecute(); // run the command 
                 }
-
-
                 if (returnCommand == MenuCommandExit) command = MenuCommandExit;
-
                 if (returnCommand == MenuCommandReturnToMain)
                     if (_menuLevel != 0)
                         command = MenuCommandReturnToMain;
             } while (command != MenuCommandExit &&
                      command != MenuCommandReturnToMain &&
                      command != MenuCommandReturnToPrevious);
-
-
             return command;
         }
     }

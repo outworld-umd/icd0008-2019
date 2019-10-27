@@ -1,31 +1,27 @@
+using System.IO;
 using System.Text.Json;
 
+namespace GameEngine {
 
-namespace GameEngine
-{
-    public static class GameConfigHandler
-    {
+    public static class GameConfigHandler {
+
         private const string FileName = "gamesettings.json";
-        
-        public static void SaveConfig(GameSettings settings, string fileName = FileName)
-        {
-            using (var writer = System.IO.File.CreateText(fileName))
-            {
+
+        public static void SaveConfig(GameSettings settings, string fileName = FileName) {
+            using (var writer = File.CreateText(fileName)) {
                 var jsonString = JsonSerializer.Serialize(settings);
                 writer.Write(jsonString);
             }
         }
 
-        public static GameSettings LoadConfig(string fileName = FileName)
-        {
-            if (System.IO.File.Exists(fileName))
-            {
-                var jsonString = System.IO.File.ReadAllText(fileName);
+        public static GameSettings LoadConfig(string fileName = FileName) {
+            if (File.Exists(fileName)) {
+                var jsonString = File.ReadAllText(fileName);
                 var res = JsonSerializer.Deserialize<GameSettings>(jsonString);
                 return res;
             }
-            
             return new GameSettings();
         }
     }
+
 }
