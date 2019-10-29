@@ -10,9 +10,9 @@ namespace ConsoleApp {
 
     internal class Program {
 
-        private static GameSettings _settings;
+        private static GameSettings? _settings;
 
-        private static Game _saveGame;
+        private static Game? _saveGame;
 
         private static void Main(string[] args) {
             Console.Clear();
@@ -56,7 +56,7 @@ namespace ConsoleApp {
         }
         
         private static string LoadGame() {
-            Game game = null;
+            Game? game = null;
             while (game == null) {
                 Console.Clear();
                 var files = Directory.GetFiles(Directory.GetCurrentDirectory() + @"\saves\", "*.json").Select(Path.GetFileName).ToArray();
@@ -83,7 +83,7 @@ namespace ConsoleApp {
         }
 
         private static string PlayGameTwoPlayers() {
-            var game = _saveGame ?? new Game(_settings.BoardHeight, _settings.BoardWidth);
+            var game = _saveGame ?? new Game(_settings?.BoardHeight ?? 6, _settings?.BoardWidth ?? 7);
             var done = false;
             while (!done) {
                 Console.Clear();

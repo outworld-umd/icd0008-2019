@@ -17,7 +17,7 @@ namespace MenuSystem {
             _menuLevel = menuLevel;
         }
 
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         public Dictionary<string, MenuItem> MenuItemsDictionary {
             get => _menuItemsDictionary;

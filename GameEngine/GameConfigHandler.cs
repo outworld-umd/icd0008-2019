@@ -15,7 +15,7 @@ namespace GameEngine {
             }
         }
 
-        public static GameSettings LoadConfig(string fileName = FileName) {
+        public static GameSettings? LoadConfig(string fileName = FileName) {
             try {
                 var jsonString = File.ReadAllText(fileName);
                 var res = JsonSerializer.Deserialize<GameSettings>(jsonString);

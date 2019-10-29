@@ -24,7 +24,7 @@ namespace GameEngine {
             }
         }
         
-        public static string GetUserStringInput(string prompt, int min, int max, string outOfBoundsMessage, bool canStop) {
+        public static string? GetUserStringInput(string prompt, int min, int max, string outOfBoundsMessage, bool canStop) {
             while (true) {
                 Console.WriteLine(prompt);
                 Console.Write(">");
