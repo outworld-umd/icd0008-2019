@@ -1,0 +1,8 @@
+C:\Users\admin\RiderProjects\Connect4\MenuSystem\bin\Debug\netstandard2.1\MenuSystem.deps.json
+C:\Users\admin\RiderProjects\Connect4\MenuSystem\bin\Debug\netstandard2.1\MenuSystem.dll
+C:\Users\admin\RiderProjects\Connect4\MenuSystem\bin\Debug\netstandard2.1\MenuSystem.pdb
+C:\Users\admin\RiderProjects\Connect4\MenuSystem\obj\Debug\netstandard2.1\MenuSystem.csprojAssemblyReference.cache
+C:\Users\admin\RiderProjects\Connect4\MenuSystem\obj\Debug\netstandard2.1\MenuSystem.AssemblyInfoInputs.cache
+C:\Users\admin\RiderProjects\Connect4\MenuSystem\obj\Debug\netstandard2.1\MenuSystem.AssemblyInfo.cs
+C:\Users\admin\RiderProjects\Connect4\MenuSystem\obj\Debug\netstandard2.1\MenuSystem.dll
+C:\Users\admin\RiderProjects\Connect4\MenuSystem\obj\Debug\netstandard2.1\MenuSystem.pdb
