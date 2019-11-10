@@ -10,14 +10,13 @@ namespace ConsoleApp {
 
     internal class Program {
 
-        private static GameSettings? _settings;
+        private static readonly GameSettings Settings = GameConfigHandler.LoadConfig() ?? new GameSettings();
 
         private static Game? _saveGame;
 
         private static void Main(string[] args) {
             Console.Clear();
             Console.OutputEncoding = System.Text.Encoding.Unicode;
-            _settings = GameConfigHandler.LoadConfig() ?? new GameSettings();
             _saveGame = null;
             var menu2 = new Menu(2) {
                 Title = "Choose a game",
@@ -35,9 +34,9 @@ namespace ConsoleApp {
             var menuSettings = new Menu(1) {
                 Title = "Start a new game of Connect 4",
                 MenuItemsDictionary = new Dictionary<string, MenuItem> {
-                    {"F", new MenuItem {Title = "Change Width of the Board", CommandToExecute = _settings.ChangeWidth}}, 
-                    {"G", new MenuItem {Title = "Change Height of the Board", CommandToExecute = _settings.ChangeHeight}}, 
-                    {"H", new MenuItem {Title = "Reset Default Settings", CommandToExecute = _settings.SetDefaults}}
+                    {"F", new MenuItem {Title = "Change Width of the Board", CommandToExecute = ChangeWidth}}, 
+                    {"G", new MenuItem {Title = "Change Height of the Board", CommandToExecute = ChangeHeight}}, 
+                    {"H", new MenuItem {Title = "Reset Default Settings", CommandToExecute = SetDefaults}}
                 }
             };
             var menu0 = new Menu {
@@ -59,9 +58,9 @@ namespace ConsoleApp {
             Game? game = null;
             while (game == null) {
                 Console.Clear();
-                var files = Directory.GetFiles(Directory.GetCurrentDirectory() + @"\saves\", "*.json").Select(Path.GetFileName).ToArray();
-                Console.WriteLine($"Available saves: {string.Join(", ", files)}");
-                var filename = InputHandler.GetUserStringInput("Choose the file to load without \".json\" at the end (D - default path (save), X - exit):", 1, 30,
+                var saves = GameSaves.GetSaves();
+                Console.WriteLine($"Available saves: {string.Join(", ", saves)}");
+                var filename = InputHandler.GetUserStringInput("Choose the game to load (D - default name (save), X - exit):", 1, 30,
                     "Enter a valid name!", true);
                 if (filename == null) return "";
                 if (filename.ToLower() == "d") filename = null;
@@ -72,10 +71,10 @@ namespace ConsoleApp {
         }
 
         private static void SaveGame(Game game) {
-            var files = Directory.GetFiles(Directory.GetCurrentDirectory() + @"\saves\", "*.json").Select(Path.GetFileName).ToArray();
-            Console.WriteLine($"Existing saves: {string.Join(", ", files)}");            
+            var saves = GameSaves.GetSaves();
+            Console.WriteLine($"Existing saves: {string.Join(", ", saves)}");            
             var filename = InputHandler.GetUserStringInput(
-                "Choose the filename for a save without \".json\" at the end (D - default path, X - drop the game):", 1, 30, 
+                "Choose the name for a save (D - default path, X - drop the game):", 1, 30, 
                 "Enter a valid name!", true);
             if (filename == null) return;
             if (filename.ToLower() == "d") filename = null;
@@ -83,7 +82,7 @@ namespace ConsoleApp {
         }
 
         private static string PlayGameTwoPlayers() {
-            var game = _saveGame ?? new Game(_settings?.BoardHeight ?? 6, _settings?.BoardWidth ?? 7);
+            var game = _saveGame ?? new Game(Settings?.BoardHeight ?? 6, Settings?.BoardWidth ?? 7);
             var done = false;
             while (!done) {
                 Console.Clear();
@@ -110,6 +109,29 @@ namespace ConsoleApp {
             Console.WriteLine(message);
             Console.Write("Press any key to continue...");
             Console.ReadKey();
+            return "";
+        }
+
+        private static string ChangeWidth() {
+            var (wMin, wMax) = (7, 14);
+            Settings.BoardWidth = InputHandler.GetUserIntInput($"Current width is {Settings.BoardWidth}.\nEnter board width (Type X to set default):", wMin, wMax,
+                             $"Width must be between {wMin} and {wMax}", true) ?? 7;
+            GameConfigHandler.SaveConfig(Settings);
+            return "";
+        }
+
+        private static string ChangeHeight() {
+            var (hMin, hMax) = (6, 12);
+            Settings.BoardHeight = InputHandler.GetUserIntInput($"Current height is {Settings.BoardHeight}.\nEnter board height (Type X to set default):", hMin, hMax,
+                              $"Height must be between {hMin} and {hMax}", true) ?? 6;
+            GameConfigHandler.SaveConfig(Settings);
+            return "";
+        }
+
+        private static string SetDefaults() {
+            Settings.BoardHeight = 6;
+            Settings.BoardWidth = 7;
+            GameConfigHandler.SaveConfig(Settings);
             return "";
         }
     }
