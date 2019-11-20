@@ -21,8 +21,10 @@ namespace DAL {
         }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-            var source = @"Data Source=C:\Users\admin\RiderProjects\Connect4\ConsoleApp\data.db";
+            var source =
+                $"Data Source={Directory.GetCurrentDirectory().Replace("\\bin\\Debug\\netcoreapp3.0", "")}\\database.db";
             optionsBuilder.UseSqlite(source);
+
         }
         
     }

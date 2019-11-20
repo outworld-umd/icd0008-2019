@@ -11,8 +11,6 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="ConsoleApp.csproj" t="IncludeRecursive" />
         <e p="data.db" t="Include" />
-        <e p="data.db-shm" t="Include" />
-        <e p="data.db-wal" t="Include" />
         <e p="GameConfigHandler.cs" t="Include" />
         <e p="GameSaves.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
