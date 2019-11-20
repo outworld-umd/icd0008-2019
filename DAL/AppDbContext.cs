@@ -22,7 +22,7 @@ namespace DAL {
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             var source =
-                $"Data Source={Directory.GetCurrentDirectory().Replace("\\bin\\Debug\\netcoreapp3.0", "")}\\database.db";
+                $"Data Source={Directory.GetCurrentDirectory().Replace("\\bin\\Debug\\netcoreapp3.0", "")}/data.db";
             optionsBuilder.UseSqlite(source);
 
         }

@@ -41,6 +41,7 @@ Generated\ Files/
 
 #Idea files
 *.idea/
+.idea/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
