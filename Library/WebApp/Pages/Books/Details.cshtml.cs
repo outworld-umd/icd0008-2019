@@ -19,7 +19,7 @@ namespace WebApp.Pages_Books
             _context = context;
         }
 
-        public Book Book { get; set; }
+        public Book? Book { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,12 +30,16 @@ namespace WebApp.Pages_Books
 
             Book = await _context.Books
                 .Include(b => b.Language)
-                .Include(b => b.Publisher).FirstOrDefaultAsync(m => m.BookId == id);
+                .Include(b => b.Publisher)
+                .Include(b => b.Comments)
+                .Include(b => b.BookAuthors).ThenInclude(a => a.Author)
+                .FirstOrDefaultAsync(m => m.BookId == id);
 
             if (Book == null)
             {
                 return NotFound();
             }
+
             return Page();
         }
     }

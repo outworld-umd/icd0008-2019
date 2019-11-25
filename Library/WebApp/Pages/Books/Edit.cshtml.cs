@@ -20,10 +20,10 @@ namespace WebApp.Pages_Books
             _context = context;
         }
 
-        [BindProperty] public Book Book { get; set; }
+        [BindProperty] public Book? Book { get; set; }
 
-        public SelectList LanguagesList { get; set; }
-        public SelectList PublishersList { get; set; }
+        public SelectList? LanguagesList { get; set; }
+        public SelectList? PublishersList { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -65,7 +65,7 @@ namespace WebApp.Pages_Books
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BookExists(Book.BookId))
+                if (!BookExists(Book!.BookId))
                 {
                     return NotFound();
                 }

@@ -19,7 +19,7 @@ namespace WebApp.Pages_Comments
             _context = context;
         }
 
-        public IList<Comment> Comment { get;set; }
+        public IList<Comment>? Comment { get;set; }
 
         public async Task OnGetAsync(int? bookId)
         {

@@ -20,7 +20,7 @@ namespace WebApp.Pages_Authors
         }
 
         [BindProperty]
-        public Author Author { get; set; }
+        public Author? Author { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

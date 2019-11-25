@@ -19,7 +19,7 @@ namespace WebApp.Pages_Authors
             _context = context;
         }
 
-        public Author Author { get; set; }
+        public Author? Author { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

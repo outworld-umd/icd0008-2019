@@ -9,53 +9,98 @@
 
 <div>
     <h4>Book</h4>
-    <hr />
+    <hr/>
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Book.Title)
+            @Html.DisplayNameFor(model => model!.Book!.Title)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Book.Title)
+            @Html.DisplayFor(model => model!.Book!.Title)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Book.Summary)
+            <p>Authors count</p>
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Book.Summary)
+            @Html.DisplayFor(model => model!.Book!.BookAuthors!.Count)
+        </dd>
+        @if (Model.Book!.BookAuthors!.Count > 0)
+        {
+            <dt class="col-sm-2">
+                Authors:
+            </dt>
+            <dd class="col-sm-10">
+                @foreach (var author in Model.Book.BookAuthors)
+                {
+                    <p>@Html.DisplayFor(modelItem => author.Author!.FirstLastName)</p>
+                }
+            </dd>
+        }
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model!.Book!.Summary)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model!.Book!.Summary)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Book.PublishingYear)
+            @Html.DisplayNameFor(model => model!.Book!.PublishingYear)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Book.PublishingYear)
+            @Html.DisplayFor(model => model!.Book!.PublishingYear)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Book.AuthoredYear)
+            @Html.DisplayNameFor(model => model!.Book!.AuthoredYear)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Book.AuthoredYear)
+            @Html.DisplayFor(model => model!.Book!.AuthoredYear)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Book.WordCount)
+            @Html.DisplayNameFor(model => model!.Book!.WordCount)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Book.WordCount)
+            @Html.DisplayFor(model => model!.Book!.WordCount)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Book.Language)
+            @Html.DisplayNameFor(model => model!.Book!.Language)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Book.Language.LanguageName)
+            @Html.DisplayFor(model => model!.Book!.Language!.LanguageName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Book.Publisher)
+            @Html.DisplayNameFor(model => model!.Book!.Publisher)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Book.Publisher.PublisherName)
+            @Html.DisplayFor(model => model!.Book!.Publisher!.PublisherName)
         </dd>
+        <dt class="col-sm-2">
+            <p>Comments Count</p>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model!.Book!.Comments!.Count)
+        </dd>
+        @if (Model.Book.Comments!.Count > 0)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model!.Book!.Comments)
+            </dt>
+            <dd class="col-sm-10">
+                @foreach (var comment in Model.Book.Comments)
+                {
+                    <p>@Html.DisplayFor(modelItem => comment!.CommentText)</p>
+                }
+            </dd>
+        }
+
     </dl>
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Book.BookId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index">Back to Books Page</a>
 </div>
+@*@if (Model.Book.Comments != null)
+    {
+        @foreach (var comment in Model.Book.Comments)
+        {
+            <p>@Html.DisplayFor(modelItem => comment.CommentText)</p>
+        }
+    }
+*@

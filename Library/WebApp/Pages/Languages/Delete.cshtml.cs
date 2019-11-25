@@ -20,7 +20,7 @@ namespace WebApp.Pages_Languages
         }
 
         [BindProperty]
-        public Language Language { get; set; }
+        public Language? Language { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

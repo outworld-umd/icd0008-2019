@@ -19,7 +19,7 @@ namespace WebApp.Pages_Languages
             _context = context;
         }
 
-        public IList<Language> Language { get;set; }
+        public IList<Language>? Language { get;set; }
 
         public async Task OnGetAsync()
         {

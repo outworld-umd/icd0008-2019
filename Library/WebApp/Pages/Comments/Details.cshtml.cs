@@ -19,7 +19,7 @@ namespace WebApp.Pages_Comments
             _context = context;
         }
 
-        public Comment Comment { get; set; }
+        public Comment? Comment { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

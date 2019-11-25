@@ -25,7 +25,7 @@ namespace WebApp.Pages_Publishers
         }
 
         [BindProperty]
-        public Publisher Publisher { get; set; }
+        public Publisher? Publisher { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.

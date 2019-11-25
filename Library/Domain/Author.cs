@@ -18,5 +18,10 @@ namespace Domain
 
         public string FirstLastName => FirstName + " " + LastName;
         public string LastFirstName => LastName + " " + FirstName;
+
+        public override string ToString()
+        {
+            return FirstLastName;
+        }
     }
 }

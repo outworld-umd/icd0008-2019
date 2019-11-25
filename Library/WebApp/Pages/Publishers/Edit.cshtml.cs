@@ -21,7 +21,7 @@ namespace WebApp.Pages_Publishers
         }
 
         [BindProperty]
-        public Publisher Publisher { get; set; }
+        public Publisher? Publisher { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -56,7 +56,7 @@ namespace WebApp.Pages_Publishers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PublisherExists(Publisher.PublisherId))
+                if (!PublisherExists(Publisher!.PublisherId))
                 {
                     return NotFound();
                 }

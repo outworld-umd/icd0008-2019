@@ -19,7 +19,7 @@ namespace WebApp.Pages_Comments
             _context = context;
         }
         
-        public SelectList BookList { get; set; }
+        public SelectList? BookList { get; set; }
 
         public IActionResult OnGet()
         {
@@ -28,7 +28,7 @@ namespace WebApp.Pages_Comments
         }
 
         [BindProperty]
-        public Comment Comment { get; set; }
+        public Comment? Comment { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.

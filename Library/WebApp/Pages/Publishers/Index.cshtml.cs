@@ -19,7 +19,7 @@ namespace WebApp.Pages_Publishers
             _context = context;
         }
 
-        public IList<Publisher> Publisher { get;set; }
+        public IList<Publisher>? Publisher { get;set; }
 
         public async Task OnGetAsync()
         {

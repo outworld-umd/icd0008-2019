@@ -21,7 +21,7 @@ namespace WebApp.Pages_Languages
         }
 
         [BindProperty]
-        public Language Language { get; set; }
+        public Language? Language { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -56,7 +56,7 @@ namespace WebApp.Pages_Languages
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LanguageExists(Language.LanguageId))
+                if (!LanguageExists(Language!.LanguageId))
                 {
                     return NotFound();
                 }

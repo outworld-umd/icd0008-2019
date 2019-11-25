@@ -19,7 +19,7 @@ namespace WebApp.Pages_Authors
             _context = context;
         }
 
-        public IList<Author> Author { get;set; }
+        public IList<Author>? Author { get;set; }
 
         public async Task OnGetAsync()
         {

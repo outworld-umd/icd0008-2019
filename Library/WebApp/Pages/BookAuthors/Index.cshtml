@@ -10,29 +10,29 @@
     <thead>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BookAuthor[0].Book)
+            @Html.DisplayNameFor(model => model.BookAuthor![0].Book)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BookAuthor[0].Author.FirstName)
+            @Html.DisplayNameFor(model => model.BookAuthor![0].Author!.FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BookAuthor[0].Author.LastName)
+            @Html.DisplayNameFor(model => model!.BookAuthor![0].Author!.LastName)
         </th>
         <th></th>
     </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.BookAuthor)
+    @foreach (var item in Model!.BookAuthor!)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Book.Title)
+                @Html.DisplayFor(modelItem => item.Book!.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Author.FirstName)
+                @Html.DisplayFor(modelItem => item.Author!.FirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Author.LastName)
+                @Html.DisplayFor(modelItem => item.Author!.LastName)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.BookAuthorId">Edit</a> |

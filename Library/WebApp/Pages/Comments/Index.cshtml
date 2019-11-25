@@ -12,24 +12,24 @@
 </p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Comment[0].CommentText)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Comment[0].Book)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model!.Comment![0].CommentText)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model!.Comment![0].Book!)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Comment) {
+    @foreach (var item in Model!.Comment!) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.CommentText)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Book.Title)
+                @Html.DisplayFor(modelItem => item.Book!.Title)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.CommentId">Edit</a> |
@@ -37,6 +37,10 @@
                 <a asp-page="./Delete" asp-route-id="@item.CommentId">Delete</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
+
+<div>
+    <a asp-page="/Books/Index">Back to Books Page</a>
+</div>

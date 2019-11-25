@@ -19,8 +19,8 @@ namespace WebApp.Pages_BookAuthors
             _context = context;
         }
 
-        public SelectList AuthorList { get; set; }
-        public SelectList BooksList { get; set; }
+        public SelectList? AuthorList { get; set; }
+        public SelectList? BooksList { get; set; }
 
         public IActionResult OnGet()
         {
@@ -30,7 +30,7 @@ namespace WebApp.Pages_BookAuthors
         }
 
         [BindProperty]
-        public BookAuthor BookAuthor { get; set; }
+        public BookAuthor? BookAuthor { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.

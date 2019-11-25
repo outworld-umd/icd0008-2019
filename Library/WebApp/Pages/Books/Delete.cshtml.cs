@@ -20,7 +20,7 @@ namespace WebApp.Pages_Books
         }
 
         [BindProperty]
-        public Book Book { get; set; }
+        public Book? Book { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

@@ -19,8 +19,8 @@ namespace WebApp.Pages_Books
             _context = context;
         }
 
-        public SelectList LanguagesList { get; set; }
-        public SelectList PublishersList { get; set; }
+        public SelectList? LanguagesList { get; set; }
+        public SelectList? PublishersList { get; set; }
 
         public IActionResult OnGet()
         {
@@ -30,7 +30,7 @@ namespace WebApp.Pages_Books
         }
 
         [BindProperty]
-        public Book Book { get; set; }
+        public Book? Book { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.

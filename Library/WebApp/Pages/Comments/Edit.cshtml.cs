@@ -21,9 +21,9 @@ namespace WebApp.Pages_Comments
         }
 
         [BindProperty]
-        public Comment Comment { get; set; }
+        public Comment? Comment { get; set; }
         
-        public SelectList BookList { get; set; }
+        public SelectList? BookList { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -60,7 +60,7 @@ namespace WebApp.Pages_Comments
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CommentExists(Comment.CommentId))
+                if (!CommentExists(Comment!.CommentId))
                 {
                     return NotFound();
                 }

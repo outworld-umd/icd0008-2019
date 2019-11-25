@@ -20,10 +20,10 @@ namespace WebApp.Pages_BookAuthors
             _context = context;
         }
 
-        [BindProperty] public BookAuthor BookAuthor { get; set; }
+        [BindProperty] public BookAuthor? BookAuthor { get; set; }
 
-        public SelectList AuthorList { get; set; }
-        public SelectList BooksList { get; set; }
+        public SelectList? AuthorList { get; set; }
+        public SelectList? BooksList { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -63,7 +63,7 @@ namespace WebApp.Pages_BookAuthors
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BookAuthorExists(BookAuthor.BookAuthorId))
+                if (!BookAuthorExists(BookAuthor!.BookAuthorId))
                 {
                     return NotFound();
                 }

@@ -20,7 +20,7 @@ namespace WebApp.Pages_Publishers
         }
 
         [BindProperty]
-        public Publisher Publisher { get; set; }
+        public Publisher? Publisher { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

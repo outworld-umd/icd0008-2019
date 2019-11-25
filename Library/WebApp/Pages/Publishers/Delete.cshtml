@@ -13,16 +13,16 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Publisher.PublisherName)
+            @Html.DisplayNameFor(model => model!.Publisher!.PublisherName)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Publisher.PublisherName)
+            @Html.DisplayFor(model => model!.Publisher!.PublisherName)
         </dd>
     </dl>
     
     <form method="post">
-        <input type="hidden" asp-for="Publisher.PublisherId" />
+        <input type="hidden" asp-for="Publisher!.PublisherId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <a asp-page="./Index">Back to Publishers Page</a>
     </form>
 </div>

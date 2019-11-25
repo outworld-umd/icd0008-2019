@@ -19,7 +19,7 @@ namespace WebApp.Pages_Languages
             _context = context;
         }
 
-        public Language Language { get; set; }
+        public Language? Language { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

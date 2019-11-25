@@ -19,7 +19,7 @@ namespace WebApp.Pages_Publishers
             _context = context;
         }
 
-        public Publisher Publisher { get; set; }
+        public Publisher? Publisher { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
