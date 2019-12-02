@@ -10,8 +10,6 @@ namespace ConsoleApp {
 
     internal class Program {
 
-        private static readonly GameSettings Settings = GameConfigHandler.LoadConfig() ?? new GameSettings();
-
         private static Game? _saveGame;
 
         private static void Main(string[] args) {
@@ -34,9 +32,9 @@ namespace ConsoleApp {
             var menuSettings = new Menu(1) {
                 Title = "Start a new game of Connect 4",
                 MenuItemsDictionary = new Dictionary<string, MenuItem> {
-                    {"F", new MenuItem {Title = "Change Width of the Board", CommandToExecute = ChangeWidth}}, 
-                    {"G", new MenuItem {Title = "Change Height of the Board", CommandToExecute = ChangeHeight}}, 
-                    {"H", new MenuItem {Title = "Reset Default Settings", CommandToExecute = SetDefaults}}
+                    {"F", new MenuItem {Title = "Change Width of the Board", CommandToExecute = GameSettings.ChangeWidth}}, 
+                    {"G", new MenuItem {Title = "Change Height of the Board", CommandToExecute = GameSettings.ChangeHeight}}, 
+                    {"H", new MenuItem {Title = "Reset Default Settings", CommandToExecute = GameSettings.SetDefaults}}
                 }
             };
             var menu0 = new Menu {
@@ -82,7 +80,7 @@ namespace ConsoleApp {
         }
 
         private static string PlayGameTwoPlayers() {
-            var game = _saveGame ?? new Game(Settings?.BoardHeight ?? 6, Settings?.BoardWidth ?? 7);
+            var game = _saveGame ?? new Game(GameSettings.Settings?.BoardHeight ?? 6, GameSettings.Settings?.BoardWidth ?? 7);
             var done = false;
             while (!done) {
                 Console.Clear();
@@ -109,29 +107,6 @@ namespace ConsoleApp {
             Console.WriteLine(message);
             Console.Write("Press any key to continue...");
             Console.ReadKey();
-            return "";
-        }
-
-        private static string ChangeWidth() {
-            var (wMin, wMax) = (7, 14);
-            Settings.BoardWidth = InputHandler.GetUserIntInput($"Current width is {Settings.BoardWidth}.\nEnter board width (Type X to set default):", wMin, wMax,
-                             $"Width must be between {wMin} and {wMax}", true) ?? 7;
-            GameConfigHandler.SaveConfig(Settings);
-            return "";
-        }
-
-        private static string ChangeHeight() {
-            var (hMin, hMax) = (6, 12);
-            Settings.BoardHeight = InputHandler.GetUserIntInput($"Current height is {Settings.BoardHeight}.\nEnter board height (Type X to set default):", hMin, hMax,
-                              $"Height must be between {hMin} and {hMax}", true) ?? 6;
-            GameConfigHandler.SaveConfig(Settings);
-            return "";
-        }
-
-        private static string SetDefaults() {
-            Settings.BoardHeight = 6;
-            Settings.BoardWidth = 7;
-            GameConfigHandler.SaveConfig(Settings);
             return "";
         }
     }
