@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace GameEngine {
 
@@ -12,11 +13,16 @@ namespace GameEngine {
             Board = new Cell[Height, Width];
             FirstPlayersMove = true;
         }
-
-        public Cell[,] Board { get; set; }
+        
+        [JsonProperty]
+        private Cell[,] Board { get; set; }
+        [JsonProperty]
         public int Height { get; set; }
+        [JsonProperty]
         public int Width { get; set; }
+        [JsonProperty]
         public bool FirstPlayersMove { get; set; }
+        [JsonProperty]
         public bool FirstPlayerWinner { get; set; }
 
         public Cell[,] GetBoard() {

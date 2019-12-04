@@ -8,7 +8,6 @@ namespace MenuSystem {
         private const string MenuCommandExit = "X";
         private const string MenuCommandReturnToPrevious = "P";
         private const string MenuCommandReturnToMain = "M";
-        private const string MenuSettings = "A";
         private readonly int _menuLevel;
 
         private Dictionary<string, MenuItem> _menuItemsDictionary = new Dictionary<string, MenuItem>();

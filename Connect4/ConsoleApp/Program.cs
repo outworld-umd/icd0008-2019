@@ -8,7 +8,7 @@ using MenuSystem;
 
 namespace ConsoleApp {
 
-    internal class Program {
+    internal static class Program {
 
         private static Game? _saveGame;
 
@@ -58,7 +58,7 @@ namespace ConsoleApp {
                 Console.Clear();
                 var saves = GameSaves.GetSaves();
                 Console.WriteLine($"Available saves: {string.Join(", ", saves)}");
-                var filename = InputHandler.GetUserStringInput("Choose the game to load (D - default name (save), X - exit):", 1, 30,
+                var filename = InputHandler.GetUserStringInput($"Choose the game to load (D - default name ({GameSaves.DefaultName}), X - exit):", 1, 30,
                     "Enter a valid name!", true);
                 if (filename == null) return "";
                 if (filename.ToLower() == "d") filename = null;
@@ -72,7 +72,7 @@ namespace ConsoleApp {
             var saves = GameSaves.GetSaves();
             Console.WriteLine($"Existing saves: {string.Join(", ", saves)}");            
             var filename = InputHandler.GetUserStringInput(
-                "Choose the name for a save (D - default path, X - drop the game):", 1, 30, 
+                $"Choose the name for a save (D - default name ({GameSaves.DefaultName}), X - drop the game):", 1, 30, 
                 "Enter a valid name!", true);
             if (filename == null) return;
             if (filename.ToLower() == "d") filename = null;

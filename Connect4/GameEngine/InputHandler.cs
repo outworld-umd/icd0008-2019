@@ -2,7 +2,7 @@ using System;
 
 namespace GameEngine {
     
-    public class InputHandler {
+    public static class InputHandler {
 
         private const string InputIsNotDigit = "IDI NAHHUI EBANII UROD!";
         

@@ -9,9 +9,9 @@ namespace ConsoleUI {
         public const string NoColumnMessage = "No, no, no! There's no column with this number!";
         public const string ChoiceQuestion = "in which column do you want to drop the disc (type X to leave)?";
         public const string ColumnFullMessage = "This column is full!";
-        private static readonly string _verticalSeparator = "│";
-        private static readonly string _horizontalSeparator = "─";
-        private static readonly string _centerSeparator = "┼";
+        private const string VerticalSeparator = "│";
+        private const string HorizontalSeparator = "─";
+        private const string CenterSeparator = "┼";
 
         public static void PrintBoard(Game game) {
             var board = game.GetBoard();
@@ -20,15 +20,15 @@ namespace ConsoleUI {
                 var line = "║";
                 for (var xIndex = 0; xIndex < game.Width; xIndex++) {
                     line = line + "  " + GetSingleState(board[yIndex, xIndex]) + "  ";
-                    if (xIndex < game.Width - 1) line += _verticalSeparator;
+                    if (xIndex < game.Width - 1) line += VerticalSeparator;
                 }
                 line += "║";
                 Console.WriteLine(line);
                 if (yIndex < game.Height - 1) {
                     line = "╟";
                     for (var xIndex = 0; xIndex < game.Width; xIndex++) {
-                        line = line + _horizontalSeparator + _horizontalSeparator + _horizontalSeparator + _horizontalSeparator + _horizontalSeparator;
-                        if (xIndex < game.Width - 1) line += _centerSeparator;
+                        line = line + HorizontalSeparator + HorizontalSeparator + HorizontalSeparator + HorizontalSeparator + HorizontalSeparator;
+                        if (xIndex < game.Width - 1) line += CenterSeparator;
                     }
                     line += "╢";
                     Console.WriteLine(line);
@@ -40,17 +40,13 @@ namespace ConsoleUI {
             Console.WriteLine($"╚{string.Join("╧", Enumerable.Repeat("═════", game.Width))}╝");
         }
 
-        public static string GetSingleState(Cell state) {
-            switch (state) {
-                case Cell.Empty:
-                    return " ";
-                case Cell.O:
-                    return "⭕";
-                case Cell.X:
-                    return "⚫";
-                default:
-                    throw new InvalidEnumArgumentException("Unknown enum option!");
-            }
+        private static string GetSingleState(Cell state) {
+            return state switch {
+                Cell.Empty => " ",
+                Cell.O => "⭕",
+                Cell.X => "⚫",
+                _ => throw new InvalidEnumArgumentException("Unknown enum option!")
+            };
         }
     }
 

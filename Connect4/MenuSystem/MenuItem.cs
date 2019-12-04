@@ -6,7 +6,7 @@ namespace MenuSystem {
 
         public string? Title { get; set; }
 
-        public string? Command { get; set; }
+        private string? Command { get; set; }
 
         public Func<string>? CommandToExecute { get; set; }
 
