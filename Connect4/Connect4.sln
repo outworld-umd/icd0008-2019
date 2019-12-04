@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngine", "GameEngine\Ga
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{24BD0291-FC90-4B68-91FF-7566D98E30A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{A1729A9A-4BDF-4E53-8CE5-BA37796BB546}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{24BD0291-FC90-4B68-91FF-7566D98E30A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24BD0291-FC90-4B68-91FF-7566D98E30A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24BD0291-FC90-4B68-91FF-7566D98E30A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1729A9A-4BDF-4E53-8CE5-BA37796BB546}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1729A9A-4BDF-4E53-8CE5-BA37796BB546}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1729A9A-4BDF-4E53-8CE5-BA37796BB546}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1729A9A-4BDF-4E53-8CE5-BA37796BB546}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
