@@ -1,6 +1,6 @@
 using System;
 
-namespace GameEngine {
+namespace ConsoleUI {
     
     public static class InputHandler {
 

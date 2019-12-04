@@ -32,9 +32,9 @@ namespace ConsoleApp {
             var menuSettings = new Menu(1) {
                 Title = "Start a new game of Connect 4",
                 MenuItemsDictionary = new Dictionary<string, MenuItem> {
-                    {"F", new MenuItem {Title = "Change Width of the Board", CommandToExecute = GameSettings.ChangeWidth}}, 
-                    {"G", new MenuItem {Title = "Change Height of the Board", CommandToExecute = GameSettings.ChangeHeight}}, 
-                    {"H", new MenuItem {Title = "Reset Default Settings", CommandToExecute = GameSettings.SetDefaults}}
+                    {"F", new MenuItem {Title = "Change Width of the Board", CommandToExecute = ChangeWidth}}, 
+                    {"G", new MenuItem {Title = "Change Height of the Board", CommandToExecute = ChangeHeight}}, 
+                    {"H", new MenuItem {Title = "Reset Default Settings", CommandToExecute = SetDefaults}}
                 }
             };
             var menu0 = new Menu {
@@ -58,8 +58,10 @@ namespace ConsoleApp {
                 Console.Clear();
                 var saves = GameSaves.GetSaves();
                 Console.WriteLine($"Available saves: {string.Join(", ", saves)}");
-                var filename = InputHandler.GetUserStringInput($"Choose the game to load (D - default name ({GameSaves.DefaultName}), X - exit):", 1, 30,
-                    "Enter a valid name!", true);
+                var filename = 
+                    InputHandler.GetUserStringInput($"Choose the game to load " +
+                                                    $"(D - default name ({GameSaves.DefaultName}), X - exit):",
+                        1, 30, "Enter a valid name!", true);
                 if (filename == null) return "";
                 if (filename.ToLower() == "d") filename = null;
                 game = GameSaves.LoadSave(filename);
@@ -107,6 +109,33 @@ namespace ConsoleApp {
             Console.WriteLine(message);
             Console.Write("Press any key to continue...");
             Console.ReadKey();
+            return "";
+        }
+        
+        private static string ChangeWidth() {
+            var (wMin, wMax) = (7, 14);
+            GameSettings.Settings.BoardWidth = 
+                InputHandler.GetUserIntInput($"Current width is {GameSettings.Settings.BoardWidth}.\n" +
+                                             "Enter board width (Type X to set default):", wMin, wMax,
+                    $"Width must be between {wMin} and {wMax}", true) ?? 7;
+            GameConfigHandler.SaveConfig(GameSettings.Settings);
+            return "";
+        }
+
+        private static string ChangeHeight() {
+            var (hMin, hMax) = (6, 12);
+            GameSettings.Settings.BoardHeight = 
+                InputHandler.GetUserIntInput($"Current height is {GameSettings.Settings.BoardHeight}.\n" +
+                                             "Enter board height (Type X to set default):", hMin, hMax,
+                    $"Height must be between {hMin} and {hMax}", true) ?? 6;
+            GameConfigHandler.SaveConfig(GameSettings.Settings);
+            return "";
+        }
+
+        private static string SetDefaults() {
+            GameSettings.Settings.BoardHeight = 6;
+            GameSettings.Settings.BoardWidth = 7;
+            GameConfigHandler.SaveConfig(GameSettings.Settings);
             return "";
         }
     }
