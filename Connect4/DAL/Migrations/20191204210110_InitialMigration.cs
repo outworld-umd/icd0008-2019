@@ -2,7 +2,7 @@
 
 namespace DAL.Migrations
 {
-    public partial class InitialDbCreation : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,7 +24,8 @@ namespace DAL.Migrations
                 {
                     SettingsId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Data = table.Column<string>(nullable: false)
+                    BoardHeight = table.Column<int>(nullable: false),
+                    BoardWidth = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

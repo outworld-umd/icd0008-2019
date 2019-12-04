@@ -10,16 +10,6 @@ namespace DAL {
         public DbSet<GameState> Games { get; set; }
         public DbSet<SettingsState> Settings { get; set; }
 
-        public class GameState {
-            [Key] public string Name { get; set; }
-            [Required] public string Data { get; set; }
-        }
-
-        public class SettingsState {
-            [Key] public int SettingsId { get; set; }
-            [Required] public string Data { get; set; }
-        }
-        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             var source =
                 $"Data Source={Directory.GetCurrentDirectory().Replace("\\bin\\Debug\\netcoreapp3.1", "")}/data.db";

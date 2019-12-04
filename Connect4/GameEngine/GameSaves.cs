@@ -25,9 +25,9 @@ namespace GameEngine {
         public static void Save(Game game, string? name) {
             using var db = new AppDbContext();
             if (GetSaves().Contains(name ?? DefaultName))
-                db.Games.Update(new AppDbContext.GameState
+                db.Games.Update(new GameState
                     {Name = name ?? DefaultName, Data = JsonConvert.SerializeObject(game)});
-            else db.Games.Add(new AppDbContext.GameState
+            else db.Games.Add(new GameState
                 {Name = name ?? DefaultName, Data = JsonConvert.SerializeObject(game)});
             db.SaveChanges();
         }

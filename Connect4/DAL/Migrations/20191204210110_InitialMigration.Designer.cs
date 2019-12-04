@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20191110183537_InitialDbCreation")]
-    partial class InitialDbCreation
+    [Migration("20191204210110_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -17,7 +17,7 @@ namespace DAL.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.0.0");
 
-            modelBuilder.Entity("DAL.AppDbContext+GameState", b =>
+            modelBuilder.Entity("DAL.GameState", b =>
                 {
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
@@ -31,15 +31,17 @@ namespace DAL.Migrations
                     b.ToTable("Games");
                 });
 
-            modelBuilder.Entity("DAL.AppDbContext+SettingsState", b =>
+            modelBuilder.Entity("DAL.SettingsState", b =>
                 {
                     b.Property<int>("SettingsId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Data")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("BoardHeight")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BoardWidth")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("SettingsId");
 
