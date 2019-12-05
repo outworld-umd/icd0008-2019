@@ -1,0 +1,37 @@
+@page
+@model WebApp.Pages_Settings.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Current Settings</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Board Height
+            </th>
+            <th>
+                Board Width
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.SettingsState) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BoardHeight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BoardWidth)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.SettingsId">Edit</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

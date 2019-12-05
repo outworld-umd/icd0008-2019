@@ -1,0 +1,70 @@
+@page
+@using GameEngine
+@model WebApp.Pages_Games.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+<hr/>
+<div>
+    <table style="margin-left:auto; margin-right:auto">
+        @for (var column = 0; column < Model.Game.Height; column++) {
+            <tr>
+                @for (var row = 0; row < Model.Game.Width; row++) {
+                    switch (Model.Game.GetBoard()[column, row]) {
+                        case Cell.X:
+                            <td class="td-field">🔴</td>
+                            break;
+                        case Cell.O:
+                            <td class="td-field">🟡</td>
+                            break;
+                        case Cell.Empty:
+                            <td class="td-field"> </td>
+                            break;
+                    }
+                }
+            </tr>
+        }
+        <form method="post">
+            <input type="hidden" name="game" value="@Model.GameState.Name">
+            <tr>
+                @for (var i = 0; i < Model.Game.Width; i++) {
+                    <td class="button-field">
+                        <button class="btn btn-secondary move-button" name="move" value="@i"> </button>
+                    </td>
+                }
+            </tr>
+
+        </form>
+    </table>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+<style>
+.td-field {
+    border: 2px solid blue; 
+    background-color: cornflowerblue; 
+    width: 60px; 
+    height: 60px; 
+    text-align: center; 
+    font-size: 2rem
+}
+
+.button-field {
+    margin-top: 1em;
+    text-align: center;
+}
+
+.move-button {
+    height: 1rem;
+    width: 1rem;
+}
+</style>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
