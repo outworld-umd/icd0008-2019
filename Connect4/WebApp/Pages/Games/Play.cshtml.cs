@@ -69,7 +69,7 @@ namespace WebApp.Pages_Games
             }
 
             Console.WriteLine(Request.Form["move"]);
-            return RedirectToPage("./Edit", new {id = Request.Form["game"]});
+            return RedirectToPage("./Play", new {id = Request.Form["game"]});
         }
 
         private bool GameStateExists(string id)

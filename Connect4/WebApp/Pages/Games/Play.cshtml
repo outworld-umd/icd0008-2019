@@ -3,11 +3,11 @@
 @model WebApp.Pages_Games.EditModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Play game";
 }
-
-<h1>Edit</h1>
-<hr/>
+<h1>Playing game of Connect4</h1>
+<br>
+<h4>Save name: "@Model.GameState.Name"</h4>
 <div>
     <table style="margin-left:auto; margin-right:auto">
         @for (var column = 0; column < Model.Game.Height; column++) {
@@ -32,26 +32,23 @@
             <tr>
                 @for (var i = 0; i < Model.Game.Width; i++) {
                     <td class="button-field">
-                        <button class="btn btn-secondary move-button" name="move" value="@i"> </button>
+                        <button class="btn move-button btn-primary" name="move" value="@i"> </button>
                     </td>
                 }
             </tr>
 
         </form>
     </table>
-</div>
-
-<div>
-    <a asp-page="./Index">Back to List</a>
+    <a style="text-align: right" class="btn btn-secondary" asp-page="./Load">Back to List of Games</a>
 </div>
 <style>
 .td-field {
     border: 2px solid blue; 
     background-color: cornflowerblue; 
-    width: 60px; 
-    height: 60px; 
+    width: 50px; 
+    height: 50px; 
     text-align: center; 
-    font-size: 2rem
+    font-size: 1.5rem
 }
 
 .button-field {

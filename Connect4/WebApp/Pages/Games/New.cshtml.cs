@@ -40,7 +40,7 @@ namespace WebApp.Pages_Games
             _context.Games.Add(GameState);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Edit", new {id = GameState.Name});
+            return RedirectToPage("./Play", new {id = GameState.Name});
         }
     }
 }

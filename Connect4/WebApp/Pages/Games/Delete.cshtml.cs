@@ -52,7 +52,7 @@ namespace WebApp.Pages_Games
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Load");
         }
     }
 }

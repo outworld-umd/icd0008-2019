@@ -40,8 +40,10 @@ namespace WebApp.Pages_Settings
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
-        {
+        public async Task<IActionResult> OnPostAsync() {
+            if (Request.Form["default"].Equals("Set Defaults"))
+                SettingsState = new SettingsState {BoardHeight = 6, BoardWidth = 7};
+
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -65,7 +67,7 @@ namespace WebApp.Pages_Settings
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Current");
         }
 
         private bool SettingsStateExists(int id)

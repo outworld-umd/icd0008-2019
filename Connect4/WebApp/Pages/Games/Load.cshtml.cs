@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using DAL;
+using GameEngine;
+using Newtonsoft.Json;
 
 namespace WebApp.Pages_Games
 {
@@ -23,6 +25,10 @@ namespace WebApp.Pages_Games
         public async Task OnGetAsync()
         {
             GameState = await _context.Games.ToListAsync();
+            GameState.ToList().ForEach(g => {
+                var game = JsonConvert.DeserializeObject<Game>(g.Data);
+                g.Data = $"Field size: {game.Height}x{game.Width}";
+            });
         }
     }
 }

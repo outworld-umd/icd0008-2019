@@ -1,0 +1,38 @@
+@page
+@model WebApp.Pages_Games.IndexModel
+
+@{
+    ViewData["Title"] = "Load game";
+}
+
+<h1>Saved games</h1>
+<br>
+<a asp-page="New">
+    <button class="btn btn-primary">New Game</button>
+</a>
+<a asp-page="/Settings/Current">
+    <button class="btn btn-secondary">Settings</button>
+</a>
+<hr/>
+
+<div class="row">
+    @foreach (var item in Model.GameState) {
+        <div class="col-xl-4 col-lg-4 pb-4">
+            <div class="card">
+                <div class="card-header font-weight-bold h3">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </div>
+                <div class="card-body">
+                    <h5>@Html.DisplayFor(modelItem => item.Data)</h5>
+                    <div class="text-center">
+                        <div class="btn-group btn-group-justified mt-3">
+                            <a class="inner btn btn-xl btn-success" asp-page="./Play" asp-route-id="@item.Name">Play</a>
+                            <a class="inner btn btn-xl btn-info" asp-page="./Details" asp-route-id="@item.Name">Show Details</a>
+                            <a class="inner btn btn-xl btn-danger" asp-page="./Delete" asp-route-id="@item.Name">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
