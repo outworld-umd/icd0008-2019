@@ -37,7 +37,10 @@ namespace WebApp.Pages_Games
 
             SettingsState = await _context.Settings.FindAsync(1);
             GameState.Data = JsonConvert.SerializeObject(new Game(SettingsState.BoardHeight, SettingsState.BoardWidth));
-            _context.Games.Add(GameState);
+            if (_context.Games.Any(g => g.Name == GameState.Name)) {
+                _context.Games.Update(GameState);
+            }
+            else _context.Games.Add(GameState);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Play", new {id = GameState.Name});

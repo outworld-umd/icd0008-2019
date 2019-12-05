@@ -8,7 +8,32 @@
 <h1>Playing game of Connect4</h1>
 <br>
 <h4>Save name: "@Model.GameState.Name"</h4>
+<br/>
+@if (Model.GameState.Winner != 0) {
+    <div class="alert alert-success">
+        <div class="alert-heading">
+            @if (Model.GameState.Winner == 1) {
+                <div class="alert-heading">Player 1 won!</div>
+            }
+            @if (Model.GameState.Winner == 2) {
+                <div class="alert-heading">Player 2 won!</div>
+            }
+            @if (Model.GameState.Winner == 3) {
+                <div class="alert-heading">It's a tie!</div>
+            }
+        </div>
+    </div>
+}
+
 <div>
+    @if (Model.GameState.Winner == 0) {
+        if (Model.Game.FirstPlayersMove) {
+            <div style="text-align: center">Red, your move! 🔴</div>
+        }
+        else {
+            <div style="text-align: center">Yellow, your move! 🟡</div>
+        }
+    }
     <table style="margin-left:auto; margin-right:auto">
         @for (var column = 0; column < Model.Game.Height; column++) {
             <tr>
@@ -29,14 +54,15 @@
         }
         <form method="post">
             <input type="hidden" name="game" value="@Model.GameState.Name">
-            <tr>
-                @for (var i = 0; i < Model.Game.Width; i++) {
-                    <td class="button-field">
-                        <button class="btn move-button btn-primary" name="move" value="@i"> </button>
-                    </td>
-                }
-            </tr>
-
+            @if (Model.GameState.Winner == 0) {
+                <tr>
+                    @for (var i = 0; i < Model.Game.Width; i++) {
+                        <td class="button-field">
+                            <button class="btn move-button btn-primary" name="move" value="@i"> </button>
+                        </td>
+                    }
+                </tr>
+            }
         </form>
     </table>
     <a style="text-align: right" class="btn btn-secondary" asp-page="./Load">Back to List of Games</a>
