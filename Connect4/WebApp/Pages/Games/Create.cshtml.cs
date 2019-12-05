@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using DAL;
+using GameEngine;
+using Newtonsoft.Json;
 
 namespace WebApp.Pages_Games
 {
@@ -18,27 +20,27 @@ namespace WebApp.Pages_Games
             _context = context;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
+            SettingsState = await _context.Settings.FindAsync(1);
             return Page();
         }
 
         [BindProperty]
         public GameState GameState { get; set; }
+        
+        public SettingsState SettingsState { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+        public async Task<IActionResult> OnPostAsync() {
 
+            SettingsState = await _context.Settings.FindAsync(1);
+            GameState.Data = JsonConvert.SerializeObject(new Game(SettingsState.BoardHeight, SettingsState.BoardWidth));
             _context.Games.Add(GameState);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Edit", new {id = GameState.Name});
         }
     }
 }

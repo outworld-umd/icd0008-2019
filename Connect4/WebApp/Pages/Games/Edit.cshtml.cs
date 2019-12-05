@@ -21,8 +21,7 @@ namespace WebApp.Pages_Games
         {
             _context = context;
         }
-
-        [BindProperty]
+        
         public GameState GameState { get; set; }
         public Game Game { get; set; }
 
@@ -45,12 +44,18 @@ namespace WebApp.Pages_Games
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync() {
-//            Game.DropDisc(int.Parse(Request.Form["move"]));
+        public async Task<IActionResult> OnPostAsync()
+        {
+            var done = false;
+            GameState = await _context.Games.FirstOrDefaultAsync(m => m.Name == Request.Form["game"].ToString());
+            Game = JsonConvert.DeserializeObject<Game>(GameState.Data);
+            if (Game.DropDisc(int.Parse(Request.Form["move"])))
+            {
+                done = Game.CheckGameEnd() || Game.CheckWinner();
+            };
+            if (done) Console.WriteLine("You won!");
             GameState.Data = JsonConvert.SerializeObject(Game);
-            Console.WriteLine(GameState);
             _context.Games.Update(GameState);
-
             try
             {
                 await _context.SaveChangesAsync();
@@ -62,8 +67,8 @@ namespace WebApp.Pages_Games
                 }
                 throw;
             }
+
             Console.WriteLine(Request.Form["move"]);
-            Console.WriteLine(Request.Form["game"]);
             return RedirectToPage("./Edit", new {id = Request.Form["game"]});
         }
 
