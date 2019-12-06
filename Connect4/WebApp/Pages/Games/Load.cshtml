@@ -1,20 +1,17 @@
 @page
 @model WebApp.Pages_Games.IndexModel
 
+
 @{
     ViewData["Title"] = "Load game";
 }
 
-<h1>Saved games</h1>
-<br>
-<a asp-page="New">
-    <button class="btn btn-primary">New Game</button>
-</a>
-<a asp-page="/Settings/Current">
-    <button class="btn btn-secondary">Settings</button>
-</a>
+<h1>Saved Games</h1>
 <hr/>
-
+<div class="mt-4 mb-5">
+    <a asp-page="New" class="btn btn-lg btn-primary">New Game</a>
+    <a asp-page="/Settings/Current" class="btn btn-lg btn-secondary">Settings</a>
+</div>
 <div class="row">
     @foreach (var item in Model.GameState) {
         <div class="col-xl-4 col-lg-4 pb-4">

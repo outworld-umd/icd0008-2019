@@ -1,12 +1,13 @@
 @page
 @model WebApp.Pages_Settings.EditModel
 
+
 @{
     ViewData["Title"] = "Edit settings";
 }
 
-<h1>Edit settings</h1>
-<br>
+<h1>Edit Settings</h1>
+<hr/>
 <div class="row">
     <div class="col-md-4">
         <form method="post">
@@ -23,13 +24,10 @@
                 <span asp-validation-for="SettingsState.BoardWidth" class="text-danger"></span>
             </div>
             <input type="submit" value="Save" class="btn btn-primary" />
-            <a class="btn btn-secondary" onclick="$('#height').val(6);$('#width').val(7)">Set defaults</a>
+            <a class="btn btn-secondary" onclick="$('#height').val(6);$('#width').val(7)">Set Defaults</a>
+            <a class="btn btn-secondary" asp-page="./Current">Back</a>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-page="./Index">Back to List</a>
 </div>
 
 @section Scripts {
