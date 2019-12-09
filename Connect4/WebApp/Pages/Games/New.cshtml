@@ -16,7 +16,7 @@
             <br/>
             <div class="form-group">
                 <label asp-for="GameState.Name" class="control-label"></label>
-                <input asp-for="GameState.Name" class="form-control"/>
+                <input asp-for="GameState.Name" class="form-control" />
                 <br/>
                 <label asp-for="GameState.Opponent" class="control-label"></label>
                 <div class="custom-control custom-radio">
@@ -27,17 +27,17 @@
                     <input type="radio" asp-for="GameState.Opponent" class="custom-control-input" id="computer" value="1">
                     <label class="custom-control-label" for="computer">Computer</label>
                 </div>
-                <input asp-for="GameState.Data" type="hidden"/>
+                <input asp-for="GameState.Data" type="hidden" />
                 <span asp-validation-for="GameState.Name" class="text-danger"></span>
                 <span asp-validation-for="GameState.Opponent" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary"/> <a class="btn btn-secondary" asp-page="Load">Back to List</a>
+                <input type="submit" value="Create" class="btn btn-primary" /> <a class="btn btn-secondary" asp-page="Load">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
 @section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
