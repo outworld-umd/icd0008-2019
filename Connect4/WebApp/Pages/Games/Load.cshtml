@@ -22,17 +22,16 @@
                 <div class="card-body">
                     <h5>Opponent: @(item.Opponent == 0 ? "Human" : "Computer")</h5>
                     <h5>@Html.DisplayFor(modelItem => item.Data)</h5>
-                    @if (item.Winner != 0) {
-                        <h5>Status: Over</h5>
-                    }
-                    else {
-                        <h5>Status: In progress</h5>
-                    }
+                    <h5>Status: @(item.Winner != 0 ? "Over" : "In progress")</h5>
                     <div class="text-center">
-                        <div class="btn-group btn-group-justified mt-3">
-                            <a class="inner btn btn-xl btn-success" asp-page="./Play" asp-route-id="@item.Name">Play</a>
-                            <a class="inner btn btn-xl btn-info" asp-page="./Details" asp-route-id="@item.Name">Show Details</a>
-                            <a class="inner btn btn-xl btn-danger" asp-page="./Delete" asp-route-id="@item.Name">Delete</a>
+                        <div class="btn-group btn-group-justified mt-3" style="min-width: 100%">
+                            @if (item.Winner == 0) {
+                                <a class="inner btn btn-success" style="width: 70%" asp-page="./Play" asp-route-id="@item.Name">Play</a>
+                            }
+                            else {
+                                <a class="inner btn btn-info" style="width: 70%" asp-page="./Details" asp-route-id="@item.Name">Show Details</a>
+                            }
+                            <a class="inner btn btn-danger" style="width: 30%" asp-page="./Delete" asp-route-id="@item.Name">Delete</a>
                         </div>
                     </div>
                 </div>

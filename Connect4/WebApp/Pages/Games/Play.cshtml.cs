@@ -62,7 +62,7 @@ namespace WebApp.Pages_Games {
                 }
                 throw;
             }
-            return RedirectToPage("./Play", new {id = Request.Form["game"]});
+            return GameState.Winner == 0 ? RedirectToPage("./Play", new {id = Request.Form["game"]}) : RedirectToPage("./Details", new {id = Request.Form["game"]});
         }
 
         private bool GameStateExists(string id) {
