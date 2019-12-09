@@ -49,11 +49,14 @@ namespace WebApp.Pages_Games
         {
             GameState = await _context.Games.FirstOrDefaultAsync(m => m.Name == Request.Form["game"].ToString());
             Game = JsonConvert.DeserializeObject<Game>(GameState.Data);
-            if (Game.DropDisc(Request.Form["move"] == "computer" ? Game.GetColumn() : int.Parse(Request.Form["move"]))) {
+            if (Game.DropDisc(int.Parse(Request.Form["move"]))) {
                 if (Game.CheckWinner()) GameState.Winner = Game.FirstPlayerWinner ? 1 : 2;
                 if (Game.CheckGameEnd()) GameState.Winner = 3;
+                if (GameState.Opponent == 1 && GameState.Winner == 0 && Game.DropDisc(Game.GetColumn())) {
+                    if (Game.CheckWinner()) GameState.Winner = 2;
+                    if (Game.CheckGameEnd()) GameState.Winner = 3;
+                }
             }
-
             GameState.Data = JsonConvert.SerializeObject(Game);
             _context.Games.Update(GameState);
             try
