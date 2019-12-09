@@ -1,11 +1,11 @@
 using System;
 
 namespace ConsoleUI {
-    
+
     public static class InputHandler {
 
         private const string InputIsNotDigit = "IDI NAHHUI EBANII UROD!";
-        
+
         public static int? GetUserIntInput(string prompt, int min, int max, string outOfBoundsMessage, bool canStop) {
             while (true) {
                 Console.WriteLine(prompt);
@@ -23,13 +23,15 @@ namespace ConsoleUI {
                 }
             }
         }
-        
-        public static string? GetUserStringInput(string prompt, int min, int max, string outOfBoundsMessage, bool canStop) {
+
+        public static string? GetUserStringInput(string prompt, int min, int max, string outOfBoundsMessage,
+            bool canStop) {
             while (true) {
                 Console.WriteLine(prompt);
                 Console.Write(">");
                 var choice = Console.ReadLine();
-                if (choice != null && (choice.Length < min || choice.Length > max)) Console.WriteLine(outOfBoundsMessage);
+                if (choice != null && (choice.Length < min || choice.Length > max))
+                    Console.WriteLine(outOfBoundsMessage);
                 else if (choice?.ToLower() == "x" && canStop) {
                     return null;
                 }
@@ -37,4 +39,5 @@ namespace ConsoleUI {
             }
         }
     }
+
 }

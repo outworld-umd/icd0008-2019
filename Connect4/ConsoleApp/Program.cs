@@ -19,10 +19,22 @@ namespace ConsoleApp {
             Console.OutputEncoding = System.Text.Encoding.Unicode;
             _saveGame = null;
             var menu3 = new Menu(3) {
-                Title = "Choose your opponent:",
-                MenuItemsDictionary = new Dictionary<string, MenuItem> {
-                    {"Q", new MenuItem {Title = "Human", CommandToExecute = () => { _saveGame = null; return PlayGameTwoPlayers(); }}},
-                    {"W", new MenuItem {Title = "Computer", CommandToExecute = () => { _saveGame = null; return PlayGameComputer(); }}}
+                Title = "Choose your opponent:", MenuItemsDictionary = new Dictionary<string, MenuItem> {
+                    {
+                        "Q", new MenuItem {
+                            Title = "Human", CommandToExecute = () => {
+                                _saveGame = null;
+                                return PlayGameTwoPlayers();
+                            }
+                        }
+                    }, {
+                        "W", new MenuItem {
+                            Title = "Computer", CommandToExecute = () => {
+                                _saveGame = null;
+                                return PlayGameComputer();
+                            }
+                        }
+                    }
                 }
             };
             var menu2 = new Menu(2) {
@@ -41,8 +53,8 @@ namespace ConsoleApp {
             var menuSettings = new Menu(1) {
                 Title = "Start a new game of Connect 4",
                 MenuItemsDictionary = new Dictionary<string, MenuItem> {
-                    {"F", new MenuItem {Title = "Change Width of the Board", CommandToExecute = ChangeWidth}}, 
-                    {"G", new MenuItem {Title = "Change Height of the Board", CommandToExecute = ChangeHeight}}, 
+                    {"F", new MenuItem {Title = "Change Width of the Board", CommandToExecute = ChangeWidth}},
+                    {"G", new MenuItem {Title = "Change Height of the Board", CommandToExecute = ChangeHeight}},
                     {"H", new MenuItem {Title = "Reset Default Settings", CommandToExecute = SetDefaults}}
                 }
             };
@@ -63,7 +75,7 @@ namespace ConsoleApp {
                 Console.Clear();
                 var saves = GameSaves.GetSaves();
                 Console.WriteLine($"Available saves: {string.Join(", ", saves)}");
-                var filename = 
+                var filename =
                     InputHandler.GetUserStringInput("Choose the game to load " +
                                                     $"(D - default name ({GameSaves.DefaultName}), X - exit):",
                         1, 30, "Enter a valid name!", true);
@@ -78,16 +90,16 @@ namespace ConsoleApp {
 
         private static void SaveGame(Game game, int mode) {
             var saves = GameSaves.GetSaves();
-            Console.WriteLine($"Existing saves: {string.Join(", ", saves)}");            
+            Console.WriteLine($"Existing saves: {string.Join(", ", saves)}");
             var filename = InputHandler.GetUserStringInput(
-                $"Choose the name for a save (D - default name ({GameSaves.DefaultName}), X - drop the game):", 1, 30, 
+                $"Choose the name for a save (D - default name ({GameSaves.DefaultName}), X - drop the game):", 1, 30,
                 "Enter a valid name!", true);
             if (filename == null) return;
             if (filename.ToLower() == "d") filename = GameSaves.DefaultName;
             string? rewriteFilename = filename;
             while (saves.Contains(rewriteFilename)) {
                 rewriteFilename = InputHandler.GetUserStringInput(
-                    "The save with this name already exists. Choose another name, or X to rewrite the save:", 1, 30, 
+                    "The save with this name already exists. Choose another name, or X to rewrite the save:", 1, 30,
                     "Enter a valid name!", true);
                 if (rewriteFilename == null) break;
             }
@@ -95,7 +107,8 @@ namespace ConsoleApp {
         }
 
         private static string PlayGameTwoPlayers() {
-            var game = _saveGame ?? new Game(GameSettings.Settings?.BoardHeight ?? 6, GameSettings.Settings?.BoardWidth ?? 7);
+            var game = _saveGame ?? new Game(GameSettings.Settings?.BoardHeight ?? 6,
+                           GameSettings.Settings?.BoardWidth ?? 7);
             var done = false;
             while (!done) {
                 Console.Clear();
@@ -126,7 +139,8 @@ namespace ConsoleApp {
         }
 
         private static string PlayGameComputer() {
-            var game = _saveGame ?? new Game(GameSettings.Settings?.BoardHeight ?? 6, GameSettings.Settings?.BoardWidth ?? 7);
+            var game = _saveGame ?? new Game(GameSettings.Settings?.BoardHeight ?? 6,
+                           GameSettings.Settings?.BoardWidth ?? 7);
             var done = false;
             while (!done) {
                 if (game.FirstPlayersMove) {
@@ -134,7 +148,8 @@ namespace ConsoleApp {
                     GameInterface.PrintBoard(game);
                     var nextTurn = false;
                     while (!nextTurn) {
-                        var column = InputHandler.GetUserIntInput("Player, " + GameInterface.ChoiceQuestion, 0, game.Width - 1,
+                        var column = InputHandler.GetUserIntInput("Player, " + GameInterface.ChoiceQuestion, 0,
+                            game.Width - 1,
                             GameInterface.NoColumnMessage, true);
                         if (!column.HasValue) {
                             SaveGame(game, 1);
@@ -143,7 +158,8 @@ namespace ConsoleApp {
                         nextTurn = game.DropDisc(column);
                         if (!nextTurn) Console.WriteLine(GameInterface.ColumnFullMessage);
                     }
-                } else {
+                }
+                else {
                     game.DropDisc(game.GetColumn());
                 }
                 done = game.CheckGameEnd() || game.CheckWinner();
@@ -161,7 +177,7 @@ namespace ConsoleApp {
 
         private static string ChangeWidth() {
             var (wMin, wMax) = (7, 14);
-            GameSettings.Settings.BoardWidth = 
+            GameSettings.Settings.BoardWidth =
                 InputHandler.GetUserIntInput($"Current width is {GameSettings.Settings.BoardWidth}.\n" +
                                              "Enter board width (Type X to set default):", wMin, wMax,
                     $"Width must be between {wMin} and {wMax}", true) ?? 7;
@@ -171,7 +187,7 @@ namespace ConsoleApp {
 
         private static string ChangeHeight() {
             var (hMin, hMax) = (6, 12);
-            GameSettings.Settings.BoardHeight = 
+            GameSettings.Settings.BoardHeight =
                 InputHandler.GetUserIntInput($"Current height is {GameSettings.Settings.BoardHeight}.\n" +
                                              "Enter board height (Type X to set default):", hMin, hMax,
                     $"Height must be between {hMin} and {hMax}", true) ?? 6;

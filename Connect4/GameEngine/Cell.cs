@@ -1,7 +1,9 @@
 ﻿namespace GameEngine {
 
     public enum Cell {
-        Empty, X, O
+        Empty,
+        X,
+        O
     }
 
 }

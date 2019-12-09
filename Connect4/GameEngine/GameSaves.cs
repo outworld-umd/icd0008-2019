@@ -26,8 +26,9 @@ namespace GameEngine {
             if (db.Games.Any(g => g.Name == (name ?? DefaultName)))
                 db.Games.Update(new GameState
                     {Name = name ?? DefaultName, Data = JsonConvert.SerializeObject(game), Opponent = mode});
-            else db.Games.Add(new GameState
-                {Name = name ?? DefaultName, Data = JsonConvert.SerializeObject(game), Opponent = mode});
+            else
+                db.Games.Add(new GameState
+                    {Name = name ?? DefaultName, Data = JsonConvert.SerializeObject(game), Opponent = mode});
             db.SaveChanges();
         }
     }

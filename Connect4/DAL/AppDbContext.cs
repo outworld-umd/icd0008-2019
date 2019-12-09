@@ -1,4 +1,3 @@
-
 using System;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace DAL {
 
     public class AppDbContext : DbContext {
-        
+
         public DbSet<GameState> Games { get; set; }
         public DbSet<SettingsState> Settings { get; set; }
 
@@ -14,9 +13,8 @@ namespace DAL {
             var source =
                 $"Data Source={Directory.GetCurrentDirectory().Replace("ConsoleApp\\bin\\Debug\\netcoreapp3.1", "").Replace("WebApp", "")}DAL\\data.db";
             optionsBuilder.UseSqlite(source);
-
         }
-        
+
     }
 
 }

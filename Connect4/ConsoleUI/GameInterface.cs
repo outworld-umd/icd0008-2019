@@ -27,16 +27,17 @@ namespace ConsoleUI {
                 if (yIndex < game.Height - 1) {
                     line = "╟";
                     for (var xIndex = 0; xIndex < game.Width; xIndex++) {
-                        line = line + HorizontalSeparator + HorizontalSeparator + HorizontalSeparator + HorizontalSeparator + HorizontalSeparator;
+                        line = line + HorizontalSeparator + HorizontalSeparator + HorizontalSeparator +
+                               HorizontalSeparator + HorizontalSeparator;
                         if (xIndex < game.Width - 1) line += CenterSeparator;
                     }
                     line += "╢";
                     Console.WriteLine(line);
                 }
-                
             }
             Console.WriteLine($"╠{string.Join("╪", Enumerable.Repeat("═════", game.Width))}╣");
-            Console.WriteLine($"║ {string.Join("  │ ", Enumerable.Range(0, game.Width).Select(x => x.ToString().PadLeft(2)))}  ║");
+            Console.WriteLine(
+                $"║ {string.Join("  │ ", Enumerable.Range(0, game.Width).Select(x => x.ToString().PadLeft(2)))}  ║");
             Console.WriteLine($"╚{string.Join("╧", Enumerable.Repeat("═════", game.Width))}╝");
         }
 

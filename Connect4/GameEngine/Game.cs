@@ -11,22 +11,15 @@ namespace GameEngine {
             Board = new Cell[Height, Width];
             FirstPlayersMove = true;
         }
-        
-        [JsonProperty]
-        private Cell[,] Board { get; set; }
-        [JsonProperty]
-        public int Height { get; set; }
-        [JsonProperty]
-        public int Width { get; set; }
-        [JsonProperty]
-        public bool FirstPlayersMove { get; set; }
-        [JsonProperty]
-        public bool FirstPlayerWinner { get; set; }
-        [JsonProperty]
-        public int LastColumn { get; set; }
-        [JsonProperty]
-        public int LastRow { get; set; }
-        
+
+        [JsonProperty] private Cell[,] Board { get; set; }
+        [JsonProperty] public int Height { get; set; }
+        [JsonProperty] public int Width { get; set; }
+        [JsonProperty] public bool FirstPlayersMove { get; set; }
+        [JsonProperty] public bool FirstPlayerWinner { get; set; }
+        [JsonProperty] public int LastColumn { get; set; }
+        [JsonProperty] public int LastRow { get; set; }
+
         public Cell[,] GetBoard() {
             var result = new Cell[Height, Width];
             Array.Copy(Board, result, Board.Length);
