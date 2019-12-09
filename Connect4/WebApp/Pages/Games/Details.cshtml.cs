@@ -6,14 +6,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
-namespace WebApp.Pages_Games
-{
-    public class DetailsModel : PageModel
-    {
+namespace WebApp.Pages_Games {
+
+    public class DetailsModel : PageModel {
         private readonly DAL.AppDbContext _context;
 
-        public DetailsModel(DAL.AppDbContext context)
-        {
+        public DetailsModel(DAL.AppDbContext context) {
             _context = context;
         }
 
@@ -36,4 +34,5 @@ namespace WebApp.Pages_Games
         }
 
     }
+
 }

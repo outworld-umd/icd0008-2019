@@ -7,22 +7,20 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using DAL;
 
-namespace WebApp.Pages_Settings
-{
-    public class IndexModel : PageModel
-    {
+namespace WebApp.Pages_Settings {
+
+    public class IndexModel : PageModel {
         private readonly DAL.AppDbContext _context;
 
-        public IndexModel(DAL.AppDbContext context)
-        {
+        public IndexModel(DAL.AppDbContext context) {
             _context = context;
         }
 
-        public IList<SettingsState> SettingsState { get;set; }
+        public IList<SettingsState> SettingsState { get; set; }
 
-        public async Task OnGetAsync()
-        {
+        public async Task OnGetAsync() {
             SettingsState = await _context.Settings.ToListAsync();
         }
     }
+
 }

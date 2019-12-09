@@ -9,32 +9,27 @@ using DAL;
 using GameEngine;
 using Newtonsoft.Json;
 
-namespace WebApp.Pages_Games
-{
-    public class CreateModel : PageModel
-    {
+namespace WebApp.Pages_Games {
+
+    public class CreateModel : PageModel {
         private readonly DAL.AppDbContext _context;
 
-        public CreateModel(DAL.AppDbContext context)
-        {
+        public CreateModel(DAL.AppDbContext context) {
             _context = context;
         }
 
-        public async Task<IActionResult> OnGetAsync()
-        {
+        public async Task<IActionResult> OnGetAsync() {
             SettingsState = await _context.Settings.FindAsync(1);
             return Page();
         }
 
-        [BindProperty]
-        public GameState GameState { get; set; }
-        
+        [BindProperty] public GameState GameState { get; set; }
+
         public SettingsState SettingsState { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync() {
-
             SettingsState = await _context.Settings.FindAsync(1);
             GameState.Data = JsonConvert.SerializeObject(new Game(SettingsState.BoardHeight, SettingsState.BoardWidth));
             if (_context.Games.Any(g => g.Name == GameState.Name)) {
@@ -42,8 +37,8 @@ namespace WebApp.Pages_Games
             }
             else _context.Games.Add(GameState);
             await _context.SaveChangesAsync();
-
             return RedirectToPage("./Play", new {id = GameState.Name});
         }
     }
+
 }

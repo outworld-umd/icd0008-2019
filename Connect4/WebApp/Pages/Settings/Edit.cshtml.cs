@@ -8,31 +8,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DAL;
 
-namespace WebApp.Pages_Settings
-{
-    public class EditModel : PageModel
-    {
+namespace WebApp.Pages_Settings {
+
+    public class EditModel : PageModel {
         private readonly DAL.AppDbContext _context;
 
-        public EditModel(DAL.AppDbContext context)
-        {
+        public EditModel(DAL.AppDbContext context) {
             _context = context;
         }
 
-        [BindProperty]
-        public SettingsState SettingsState { get; set; }
+        [BindProperty] public SettingsState SettingsState { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
-        {
-            if (id == null)
-            {
+        public async Task<IActionResult> OnGetAsync(int? id) {
+            if (id == null) {
                 return NotFound();
             }
 
             SettingsState = await _context.Settings.FirstOrDefaultAsync(m => m.SettingsId == id);
 
-            if (SettingsState == null)
-            {
+            if (SettingsState == null) {
                 return NotFound();
             }
             return Page();
@@ -44,25 +38,20 @@ namespace WebApp.Pages_Settings
             if (Request.Form["default"].Equals("Set Defaults"))
                 SettingsState = new SettingsState {BoardHeight = 6, BoardWidth = 7};
 
-            if (!ModelState.IsValid)
-            {
+            if (!ModelState.IsValid) {
                 return Page();
             }
 
             _context.Attach(SettingsState).State = EntityState.Modified;
 
-            try
-            {
+            try {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!SettingsStateExists(SettingsState.SettingsId))
-                {
+            catch (DbUpdateConcurrencyException) {
+                if (!SettingsStateExists(SettingsState.SettingsId)) {
                     return NotFound();
                 }
-                else
-                {
+                else {
                     throw;
                 }
             }
@@ -70,9 +59,9 @@ namespace WebApp.Pages_Settings
             return RedirectToPage("./Current");
         }
 
-        private bool SettingsStateExists(int id)
-        {
+        private bool SettingsStateExists(int id) {
             return _context.Settings.Any(e => e.SettingsId == id);
         }
     }
+
 }

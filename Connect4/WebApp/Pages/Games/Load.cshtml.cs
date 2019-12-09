@@ -9,21 +9,18 @@ using DAL;
 using GameEngine;
 using Newtonsoft.Json;
 
-namespace WebApp.Pages_Games
-{
-    public class IndexModel : PageModel
-    {
+namespace WebApp.Pages_Games {
+
+    public class IndexModel : PageModel {
         private readonly DAL.AppDbContext _context;
 
-        public IndexModel(DAL.AppDbContext context)
-        {
+        public IndexModel(DAL.AppDbContext context) {
             _context = context;
         }
 
-        public IList<GameState> GameState { get;set; }
+        public IList<GameState> GameState { get; set; }
 
-        public async Task OnGetAsync()
-        {
+        public async Task OnGetAsync() {
             GameState = await _context.Games.ToListAsync();
             GameState.ToList().ForEach(g => {
                 var game = JsonConvert.DeserializeObject<Game>(g.Data);
@@ -31,4 +28,5 @@ namespace WebApp.Pages_Games
             });
         }
     }
+
 }
