@@ -33,8 +33,8 @@ namespace GameEngine {
             return result;
         }
 
-        public int getColumn() {
-            return new Random().Next(LastColumn < 0 ? 0 : LastColumn, LastColumn >= Width ? Width - 1 : LastColumn);
+        public int GetColumn() {
+            return new Random().Next(LastColumn - 1 < 0 ? 0 : LastColumn - 1, LastColumn + 2 > Width ? Width : LastColumn + 2);
         }
 
         public bool DropDisc(int? column) {

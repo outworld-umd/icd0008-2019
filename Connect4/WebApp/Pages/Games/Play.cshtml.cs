@@ -21,7 +21,7 @@ namespace WebApp.Pages_Games
         {
             _context = context;
         }
-        
+
         public GameState GameState { get; set; }
         public Game Game { get; set; }
 
@@ -38,6 +38,7 @@ namespace WebApp.Pages_Games
             {
                 return NotFound();
             }
+
             Game = JsonConvert.DeserializeObject<Game>(GameState.Data);
             return Page();
         }
@@ -48,10 +49,11 @@ namespace WebApp.Pages_Games
         {
             GameState = await _context.Games.FirstOrDefaultAsync(m => m.Name == Request.Form["game"].ToString());
             Game = JsonConvert.DeserializeObject<Game>(GameState.Data);
-            if (Game.DropDisc(int.Parse(Request.Form["move"]))) {
+            if (Game.DropDisc(Request.Form["move"] == "computer" ? Game.GetColumn() : int.Parse(Request.Form["move"]))) {
                 if (Game.CheckWinner()) GameState.Winner = Game.FirstPlayerWinner ? 1 : 2;
                 if (Game.CheckGameEnd()) GameState.Winner = 3;
             }
+
             GameState.Data = JsonConvert.SerializeObject(Game);
             _context.Games.Update(GameState);
             try

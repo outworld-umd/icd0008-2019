@@ -20,12 +20,13 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </div>
                 <div class="card-body">
+                    <h5>Opponent: @(item.Opponent == 0 ? "Human" : "Computer")</h5>
                     <h5>@Html.DisplayFor(modelItem => item.Data)</h5>
                     @if (item.Winner != 0) {
-                        <h5>Status: over</h5>
+                        <h5>Status: Over</h5>
                     }
                     else {
-                        <h5>Status: in progress</h5>
+                        <h5>Status: In progress</h5>
                     }
                     <div class="text-center">
                         <div class="btn-group btn-group-justified mt-3">

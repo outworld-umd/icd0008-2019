@@ -7,5 +7,7 @@ namespace DAL {
         [Required] public string Data { get; set; }
 
         public int Winner { get; set; } = 0;
+        
+        [Required (ErrorMessage = "You must choose your opponent!")] public int Opponent { get; set; }
     }
 }

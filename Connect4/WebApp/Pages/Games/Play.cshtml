@@ -14,10 +14,10 @@
     <div class="alert alert-success">
         <div class="alert-heading">
             @if (Model.GameState.Winner == 1) {
-                <div class="alert-heading">Player 1 won!</div>
+                <div class="alert-heading">@(Model.GameState.Opponent == 0 ? "Player 1 won!" : "Player won!")</div>
             }
             @if (Model.GameState.Winner == 2) {
-                <div class="alert-heading">Player 2 won!</div>
+                <div class="alert-heading">@(Model.GameState.Opponent == 0 ? "Player 2 won!" : "Computer won!")</div>
             }
             @if (Model.GameState.Winner == 3) {
                 <div class="alert-heading">It's a tie!</div>
@@ -56,13 +56,22 @@
         <form method="post">
             <input type="hidden" name="game" value="@Model.GameState.Name">
             @if (Model.GameState.Winner == 0) {
-                <tr>
-                    @for (var i = 0; i < Model.Game.Width; i++) {
-                        <td class="button-field">
-                            <button class="btn move-button btn-primary" name="move" value="@i"> </button>
-                        </td>
-                    }
-                </tr>
+                if (Model.GameState.Opponent == 1 && !Model.Game.FirstPlayersMove)
+                {
+                    <tr>
+                        <button class="btn btn-primary" style="margin: auto; display: block" name="move" value="computer">Make computer move</button>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        @for (var i = 0; i < Model.Game.Width; i++) {
+                            <td class="button-field">
+                                <button class="btn move-button btn-primary" name="move" value="@i"> </button>
+                            </td>
+                        }
+                    </tr> 
+                }
             }
         </form>
     </table>
