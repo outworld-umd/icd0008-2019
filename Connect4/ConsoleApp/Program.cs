@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using ConsoleUI;
+using DAL;
 using GameEngine;
 using MenuSystem;
+using Newtonsoft.Json;
 
 namespace ConsoleApp {
 
@@ -16,10 +18,17 @@ namespace ConsoleApp {
             Console.Clear();
             Console.OutputEncoding = System.Text.Encoding.Unicode;
             _saveGame = null;
-            var menu2 = new Menu(2) {
-                Title = "Choose a game",
+            var menu3 = new Menu(3) {
+                Title = "Choose your opponent:",
                 MenuItemsDictionary = new Dictionary<string, MenuItem> {
-                    {"Q", new MenuItem {Title = "Start a new game", CommandToExecute = NewGame}},
+                    {"Q", new MenuItem {Title = "Human", CommandToExecute = () => { _saveGame = null; return PlayGameTwoPlayers(); }}},
+                    {"W", new MenuItem {Title = "Computer", CommandToExecute = () => { _saveGame = null; return PlayGameComputer(); }}}
+                }
+            };
+            var menu2 = new Menu(2) {
+                Title = "Choose a game:",
+                MenuItemsDictionary = new Dictionary<string, MenuItem> {
+                    {"Q", new MenuItem {Title = "Start a new game", CommandToExecute = menu3.Run}},
                     {"W", new MenuItem {Title = "Load game", CommandToExecute = LoadGame}}
                 }
             };
@@ -47,38 +56,42 @@ namespace ConsoleApp {
             menu0.Run();
         }
 
-        private static string NewGame() {
-            _saveGame = null;
-            return PlayGameTwoPlayers();
-        }
-        
         private static string LoadGame() {
             Game? game = null;
+            GameState? gameState = null;
             while (game == null) {
                 Console.Clear();
                 var saves = GameSaves.GetSaves();
                 Console.WriteLine($"Available saves: {string.Join(", ", saves)}");
                 var filename = 
-                    InputHandler.GetUserStringInput($"Choose the game to load " +
+                    InputHandler.GetUserStringInput("Choose the game to load " +
                                                     $"(D - default name ({GameSaves.DefaultName}), X - exit):",
                         1, 30, "Enter a valid name!", true);
                 if (filename == null) return "";
                 if (filename.ToLower() == "d") filename = null;
-                game = GameSaves.LoadSave(filename);
+                gameState = GameSaves.LoadSave(filename);
+                game = gameState != null ? JsonConvert.DeserializeObject<Game>(gameState.Data) : null;
             }
             _saveGame = game;
-            return PlayGameTwoPlayers();
+            return gameState!.Opponent == 0 ? PlayGameTwoPlayers() : PlayGameComputer();
         }
 
-        private static void SaveGame(Game game) {
+        private static void SaveGame(Game game, int mode) {
             var saves = GameSaves.GetSaves();
             Console.WriteLine($"Existing saves: {string.Join(", ", saves)}");            
             var filename = InputHandler.GetUserStringInput(
                 $"Choose the name for a save (D - default name ({GameSaves.DefaultName}), X - drop the game):", 1, 30, 
                 "Enter a valid name!", true);
             if (filename == null) return;
-            if (filename.ToLower() == "d") filename = null;
-            GameSaves.Save(game, filename);
+            if (filename.ToLower() == "d") filename = GameSaves.DefaultName;
+            string? rewriteFilename = filename;
+            while (saves.Contains(rewriteFilename)) {
+                rewriteFilename = InputHandler.GetUserStringInput(
+                    "The save with this name already exists. Choose another name, or X to rewrite the save:", 1, 30, 
+                    "Enter a valid name!", true);
+                if (rewriteFilename == null) break;
+            }
+            GameSaves.Save(game, rewriteFilename ?? filename, mode);
         }
 
         private static string PlayGameTwoPlayers() {
@@ -93,7 +106,7 @@ namespace ConsoleApp {
                     var column = InputHandler.GetUserIntInput(player + GameInterface.ChoiceQuestion, 0, game.Width - 1,
                         GameInterface.NoColumnMessage, true);
                     if (!column.HasValue) {
-                        SaveGame(game);
+                        SaveGame(game, 0);
                         return "";
                     }
                     nextTurn = game.DropDisc(column);
@@ -111,7 +124,41 @@ namespace ConsoleApp {
             Console.ReadKey();
             return "";
         }
-        
+
+        private static string PlayGameComputer() {
+            var game = _saveGame ?? new Game(GameSettings.Settings?.BoardHeight ?? 6, GameSettings.Settings?.BoardWidth ?? 7);
+            var done = false;
+            while (!done) {
+                if (game.FirstPlayersMove) {
+                    Console.Clear();
+                    GameInterface.PrintBoard(game);
+                    var nextTurn = false;
+                    while (!nextTurn) {
+                        var column = InputHandler.GetUserIntInput("Player, " + GameInterface.ChoiceQuestion, 0, game.Width - 1,
+                            GameInterface.NoColumnMessage, true);
+                        if (!column.HasValue) {
+                            SaveGame(game, 1);
+                            return "";
+                        }
+                        nextTurn = game.DropDisc(column);
+                        if (!nextTurn) Console.WriteLine(GameInterface.ColumnFullMessage);
+                    }
+                } else {
+                    game.DropDisc(game.GetColumn());
+                }
+                done = game.CheckGameEnd() || game.CheckWinner();
+            }
+            string message;
+            if (game.CheckGameEnd()) message = "Draw!";
+            else message = game.FirstPlayerWinner ? "Player wins!" : "Computer wins!";
+            Console.Clear();
+            GameInterface.PrintBoard(game);
+            Console.WriteLine(message);
+            Console.Write("Press any key to continue...");
+            Console.ReadKey();
+            return "";
+        }
+
         private static string ChangeWidth() {
             var (wMin, wMax) = (7, 14);
             GameSettings.Settings.BoardWidth = 

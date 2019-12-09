@@ -37,7 +37,7 @@ namespace GameEngine {
             var r = new Random();
             var col = r.Next(LastColumn - 1 < 0 ? 0 : LastColumn - 1, LastColumn + 2 > Width ? Width : LastColumn + 2);
             while (Board[0, col] != Cell.Empty)
-                col = r.Next(LastColumn - 1 < 0 ? 0 : LastColumn - 1, LastColumn + 2 > Width ? Width : LastColumn + 2);
+                col = r.Next(Width);
             return col;
         }
 

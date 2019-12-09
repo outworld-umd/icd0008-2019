@@ -8,13 +8,12 @@ namespace GameEngine {
 
         public static string DefaultName { get; } = "save";
 
-        public static Game? LoadSave(string? name) {
-            Game? game = null;
+        public static GameState? LoadSave(string? name) {
             using (var db = new AppDbContext()) {
                 var gameState = db.Games.Find(name ?? DefaultName);
-                if (gameState != null) game = JsonConvert.DeserializeObject<Game>(gameState.Data);
+                if (gameState != null) return gameState;
             }
-            return game;
+            return null;
         }
 
         public static string[] GetSaves() {
@@ -22,13 +21,13 @@ namespace GameEngine {
             return db.Games.Where(x => x.Winner == 0).Select(x => x.Name).ToArray();
         }
 
-        public static void Save(Game game, string? name) {
+        public static void Save(Game game, string? name, int mode) {
             using var db = new AppDbContext();
             if (db.Games.Any(g => g.Name == (name ?? DefaultName)))
                 db.Games.Update(new GameState
-                    {Name = name ?? DefaultName, Data = JsonConvert.SerializeObject(game)});
+                    {Name = name ?? DefaultName, Data = JsonConvert.SerializeObject(game), Opponent = mode});
             else db.Games.Add(new GameState
-                {Name = name ?? DefaultName, Data = JsonConvert.SerializeObject(game)});
+                {Name = name ?? DefaultName, Data = JsonConvert.SerializeObject(game), Opponent = mode});
             db.SaveChanges();
         }
     }
