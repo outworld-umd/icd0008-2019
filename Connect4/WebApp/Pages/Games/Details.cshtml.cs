@@ -6,14 +6,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
-namespace WebApp.Pages_Games
-{
-    public class DetailsModel : PageModel
-    {
-        private readonly DAL.AppDbContext _context;
+namespace WebApp.Pages_Games {
 
-        public DetailsModel(DAL.AppDbContext context)
-        {
+    public class DetailsModel : PageModel {
+        private readonly AppDbContext _context;
+
+        public DetailsModel(AppDbContext context) {
             _context = context;
         }
 
@@ -21,19 +19,12 @@ namespace WebApp.Pages_Games
         public Game Game { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id) {
-            if (id == null) {
-                return NotFound();
-            }
-
+            if (id == null) return NotFound();
             GameState = await _context.Games.FirstOrDefaultAsync(m => m.Name == id);
-
-            if (GameState == null) {
-                return NotFound();
-            }
-
+            if (GameState == null) return NotFound();
             Game = JsonConvert.DeserializeObject<Game>(GameState.Data);
             return Page();
         }
-
     }
+
 }
