@@ -43,7 +43,12 @@ namespace GameEngine {
             LastRow = row;
             LastColumn = col;
             Board[row, col] = FirstPlayersMove ? Cell.X : Cell.O;
+            FirstPlayersMove = !FirstPlayersMove;
             return true;
+        }
+
+        public int CheckGameStatus() {
+            return CheckWinner() ? (FirstPlayerWinner ? 1 : 2) : (CheckGameEnd() ? 3 : 0);
         }
 
         public bool CheckGameEnd() {
@@ -55,7 +60,6 @@ namespace GameEngine {
 
         public bool CheckWinner() {
             var check = FirstPlayersMove ? Cell.X : Cell.O;
-            FirstPlayersMove = !FirstPlayersMove;
             // check horizontally
             for (var i = 0; i < Width - 3; i++)
                 if (Board[LastRow, i] == check && Board[LastRow, i + 1] == check && Board[LastRow, i + 2] == check &&

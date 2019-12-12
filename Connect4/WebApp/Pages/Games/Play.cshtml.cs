@@ -1,22 +1,18 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using DAL;
 using GameEngine;
-using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
 namespace WebApp.Pages_Games {
 
     public class EditModel : PageModel {
-        private readonly DAL.AppDbContext _context;
+        private readonly AppDbContext _context;
 
-        public EditModel(DAL.AppDbContext context) {
+        public EditModel(AppDbContext context) {
             _context = context;
         }
 
@@ -24,15 +20,11 @@ namespace WebApp.Pages_Games {
         public Game Game { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id) {
-            if (id == null) {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             GameState = await _context.Games.FirstOrDefaultAsync(m => m.Name == id);
 
-            if (GameState == null) {
-                return NotFound();
-            }
+            if (GameState == null) return NotFound();
 
             Game = JsonConvert.DeserializeObject<Game>(GameState.Data);
             return Page();
@@ -44,12 +36,9 @@ namespace WebApp.Pages_Games {
             GameState = await _context.Games.FirstOrDefaultAsync(m => m.Name == Request.Form["game"].ToString());
             Game = JsonConvert.DeserializeObject<Game>(GameState.Data);
             if (Game.DropDisc(int.Parse(Request.Form["move"]))) {
-                if (Game.CheckWinner()) GameState.Winner = Game.FirstPlayerWinner ? 1 : 2;
-                if (Game.CheckGameEnd()) GameState.Winner = 3;
-                if (GameState.Opponent == 1 && GameState.Winner == 0 && Game.DropDisc(Game.GetColumn())) {
-                    if (Game.CheckWinner()) GameState.Winner = 2;
-                    if (Game.CheckGameEnd()) GameState.Winner = 3;
-                }
+                GameState.Winner = Game.CheckGameStatus();
+                if (GameState.Opponent == 1 && GameState.Winner == 0 && Game.DropDisc(Game.GetColumn()))
+                    GameState.Winner = Game.CheckGameStatus();
             }
             GameState.Data = JsonConvert.SerializeObject(Game);
             _context.Games.Update(GameState);
@@ -57,12 +46,10 @@ namespace WebApp.Pages_Games {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException) {
-                if (!GameStateExists(GameState.Name)) {
-                    return NotFound();
-                }
+                if (!GameStateExists(GameState.Name)) return NotFound();
                 throw;
             }
-            return GameState.Winner == 0 ? RedirectToPage("./Play", new {id = Request.Form["game"]}) : RedirectToPage("./Details", new {id = Request.Form["game"]});
+            return RedirectToPage(GameState.Winner == 0 ? "./Play" : "./Details", new {id = Request.Form["game"]});
         }
 
         private bool GameStateExists(string id) {
