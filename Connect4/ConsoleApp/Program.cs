@@ -73,7 +73,7 @@ namespace ConsoleApp {
             GameState? gameState = null;
             while (game == null) {
                 Console.Clear();
-                var saves = GameSaves.GetSaves();
+                var saves = GameSaves.GetPlayableSaves();
                 Console.WriteLine($"Available saves: {string.Join(", ", saves)}");
                 var filename =
                     InputHandler.GetUserStringInput("Choose the game to load " +
@@ -89,15 +89,17 @@ namespace ConsoleApp {
         }
 
         private static void SaveGame(Game game, int mode) {
-            var saves = GameSaves.GetSaves();
-            Console.WriteLine($"Existing saves: {string.Join(", ", saves)}");
+            var playableSaves = GameSaves.GetPlayableSaves();
+            Console.WriteLine($"Existing playable saves: {string.Join(", ", playableSaves)}");
+            var finishedSaves = GameSaves.GetFinishedSaves();
+            Console.WriteLine($"Existing finished saves: {string.Join(", ", finishedSaves)}");
             var filename = InputHandler.GetUserStringInput(
                 $"Choose the name for a save (D - default name ({GameSaves.DefaultName}), X - drop the game):", 1, 30,
                 "Enter a valid name!", true);
             if (filename == null) return;
             if (filename.ToLower() == "d") filename = GameSaves.DefaultName;
             string? rewriteFilename = filename;
-            while (saves.Contains(rewriteFilename)) {
+            while (playableSaves.Contains(rewriteFilename) || finishedSaves.Contains(rewriteFilename)) {
                 rewriteFilename = InputHandler.GetUserStringInput(
                     "The save with this name already exists. Choose another name, or X to rewrite the save:", 1, 30,
                     "Enter a valid name!", true);

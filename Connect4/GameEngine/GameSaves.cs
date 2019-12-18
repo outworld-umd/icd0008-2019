@@ -16,9 +16,14 @@ namespace GameEngine {
             return null;
         }
 
-        public static string[] GetSaves() {
+        public static string[] GetPlayableSaves() {
             using var db = new AppDbContext();
             return db.Games.Where(x => x.Winner == 0).Select(x => x.Name).ToArray();
+        }
+        
+        public static string[] GetFinishedSaves() {
+            using var db = new AppDbContext();
+            return db.Games.Where(x => x.Winner != 0).Select(x => x.Name).ToArray();
         }
 
         public static void Save(Game game, string? name, int mode) {
