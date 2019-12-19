@@ -17,6 +17,7 @@
             <div class="form-group">
                 <label asp-for="GameState.Name" class="control-label h4 my-2"></label>
                 <input asp-for="GameState.Name" class="form-control"/>
+                <span asp-validation-for="GameState.Name" class="text-danger"></span>
                 <br/>
                 <label asp-for="GameState.Opponent" class="control-label h4 my-2"></label>
                 <div class="custom-control custom-radio">
@@ -27,11 +28,10 @@
                     <input type="radio" asp-for="GameState.Opponent" class="custom-control-input" id="computer" value="1">
                     <label class="custom-control-label" for="computer">Computer</label>
                 </div>
-                <input asp-for="GameState.Data" type="hidden"/>
-                <span asp-validation-for="GameState.Name" class="text-danger"></span>
                 <span asp-validation-for="GameState.Opponent" class="text-danger"></span>
-                <input type="submit" value="Create" class="btn btn-primary my-4"/> <a class="btn btn-secondary my-4" asp-page="Load">Back to List</a>
+                <input asp-for="GameState.Data" type="hidden"/>
             </div>
+            <input type="submit" value="Create" class="btn btn-primary my-4"/> <a class="btn btn-secondary my-4" asp-page="Load">Back to List</a>
         </form>
     </div>
 </div>

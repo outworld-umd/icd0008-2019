@@ -53,6 +53,11 @@ namespace GameEngine {
             return true;
         }
 
+        public int GetGameStateWinner() {
+            if (CheckWinner()) return FirstPlayerWinner ? 1 : 2;
+            return CheckGameEnd() ? 3 : 0;
+        }
+
         public bool CheckWinner() {
             var check = FirstPlayersMove ? Cell.X : Cell.O;
             FirstPlayersMove = !FirstPlayersMove;
