@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
 
 namespace Domain
 {
     public class Person
     {
-        [Key]
         public int PersonId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+
+        public string Name { get; set; } = default!;
+        
+        public ICollection<Answer>? Answers { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace ExamApp
     {
         public static void Main(string[] args)
         {
-            // FROM DAL:
+            // FROM EXAM:
             // dotnet ef migrations add InitialDbCreation --project DAL --startup-project ExamApp
             // dotnet ef database update --project DAL --startup-project ExamApp
             // dotnet ef migrations remove
