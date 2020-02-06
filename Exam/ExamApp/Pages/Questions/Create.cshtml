@@ -1,0 +1,86 @@
+@page
+@model ExamApp.Pages_Questions.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Question</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Question.Title" class="control-label"></label>
+                <input asp-for="Question.Title" class="form-control"/>
+                <span asp-validation-for="Question.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question.Description" class="control-label"></label>
+                <input asp-for="Question.Description" class="form-control"/>
+                <span asp-validation-for="Question.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @if (Model.QuizID == null)
+                {
+                    <label asp-for="Question.QuizId" class="control-label"></label>
+                    <select asp-for="Question.QuizId" class="form-control" asp-items="ViewBag.QuizId"></select>
+                }
+                else
+                {
+                    <input type="hidden" asp-for="Question.QuizId" value="@Model.QuizID">
+                }
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Correct Choice
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.QuizQuestions)
+            {
+                <tr>
+                    <td>
+                        @item.Title
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CorrectChoice!.Text)
+                    </td>
+                    <td>
+                        <a asp-page="/Choices/Create" asp-route-id="@item.QuestionId">Choices</a> |
+                        <a asp-page="./Edit" asp-route-id="@item.QuestionId">Edit</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.QuestionId">Delete</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

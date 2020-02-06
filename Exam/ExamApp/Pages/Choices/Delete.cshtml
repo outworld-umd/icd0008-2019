@@ -1,0 +1,34 @@
+﻿@page
+@model ExamApp.Pages_Choices.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Choice</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Choice.Text)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Choice.Text)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Choice.Question)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Choice!.Question!.Title)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Choice.ChoiceId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Create" asp-route-id="" asp-route-redirect="">Back to List</a>
+    </form>
+</div>

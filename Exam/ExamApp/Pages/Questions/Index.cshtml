@@ -1,0 +1,30 @@
+@page
+@model ExamApp.Pages_Questions.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@Model.Quiz.Name</h1>
+<hr/>
+<form method="post">
+    <input type="hidden" asp-for="@Model.PersonId"/>
+    <div class="form-check">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        @for (var questionNo = 0; questionNo < Model.Question.Count; questionNo++)
+        {
+            <div class="form-group">
+                <p>@Model.Question[questionNo].Title</p>
+                @for (var choiceNo = 0; choiceNo < Model.Question[questionNo].Choices.Count; choiceNo++)
+                {
+                    <input type="radio" required="required" asp-for="ChosenIds[questionNo]" value="@Model.Question[questionNo].Choices.ToList()[choiceNo].ChoiceId">
+                    @Model.Question[questionNo].Choices.ToList()[choiceNo].Text<br>
+                    <span asp-validation-for="ChosenIds[questionNo]"></span>
+                }
+            </div>
+        <hr/>
+        }
+    </div>
+    <input type="submit" class="btn btn-primary" value="Submit"/>
+</form>

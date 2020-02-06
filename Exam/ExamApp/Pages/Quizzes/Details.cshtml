@@ -1,0 +1,79 @@
+@page
+@model ExamApp.Pages_Quizzes.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="text-center">Details</h1>
+
+<div>
+    <div class="col-md-8 my-3 mx-auto">
+        <h4>Quiz</h4>
+        <hr/>
+        <dt class="col-sm-6">
+            @Html.DisplayNameFor(model => model.Quiz.Name)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Quiz.Name)
+        </dd>
+        <dt class="col-sm-6">
+            @Html.DisplayNameFor(model => model.Quiz.Description)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Quiz.Description)
+        </dd>
+        <dt class="col-sm-6">
+            @Html.DisplayNameFor(model => model.Quiz.Type)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Quiz.Type)
+        </dd>
+        <dt class="col-sm-6">
+            @Html.DisplayNameFor(model => model.Quiz.CreationTime)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Quiz.CreationTime)
+        </dd>
+    </div>
+    <div class="col-md-8 mx-auto">
+        <h4>Questions</h4>
+        @for (var i = 0; i < Model.Quiz!.Questions!.Count; i++)
+        {
+            <table class="table">
+                <thead>
+                <th >
+                    @Model.Quiz.Questions.ToList()[i].Title
+                </th>
+                <th>
+                    Statistics
+                </th>
+                </thead>
+                <tbody>
+                @for (var j = 0; j < Model.Quiz.Questions.ToList()[i].Choices.ToList().Count; j++)
+                {
+                    <tr>
+                        <td>
+                            @if (Model.Quiz.Questions.ToList()[i].Choices.ToList()[j].ChoiceId == Model.Quiz.Questions.ToList()[i].CorrectChoiceId)
+                            {
+                                <div class="text-success" style="font-weight: bold">@Model.Quiz.Questions.ToList()[i].Choices.ToList()[j].Text</div>
+                            }
+                            else
+                            {
+                                @Model.Quiz.Questions.ToList()[i].Choices.ToList()[j].Text
+                            }
+                        </td>
+                        <td>
+                            @Model.Answers.Where(x => @Model.Quiz.Questions.ToList()[i].Choices.ToList()[j].ChoiceId == x.ChoiceId).ToList().Count
+                        </td>
+                    </tr>
+                }
+                </tbody>
+
+            </table>
+        }
+    </div>
+</div>
+<div class="text-center">
+    <a class="btn-success btn" asp-page="./Edit" asp-route-id="@Model.Quiz.QuizId">Edit</a>
+</div>

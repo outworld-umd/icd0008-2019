@@ -1,0 +1,67 @@
+@page
+@model ExamApp.Pages_Quizzes.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+@if (Model.PersonName != null)
+{
+    <h1>Hello, @Model.PersonName!</h1>
+    <br/>
+    
+}
+<h2>Quizzes</h2>
+
+<p>
+    <a class="btn btn-primary" asp-page="Create" asp-route-personId="@Model.PersonId">Create New</a>
+</p>
+<form class="form-inline" method="get" id="searcher">
+    <div class="form-group">
+        <input type="hidden" asp-for="PersonId" value="@Model.PersonId"/>
+        <input asp-for="Search" value="@Model.Search" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Search" style="margin-left: 10px" class="btn btn-primary"/>
+        <input type="submit" value="Reset" name="ToDoActionReset" style="margin-left: 10px" class="btn btn-dark"
+               @(string.IsNullOrWhiteSpace(Model.Search) ? "disabled=\"disabled\"" : "")/>
+    </div>
+</form>
+<div class="padding-on-top-20">
+    @if (!string.IsNullOrWhiteSpace(Model.Search))
+    {
+        <p>Search is active. Search term: @Model.Search</p>
+        <p>Items found: @Model.Quiz.Count</p>
+    }
+</div>
+
+<div class="row">
+    @foreach (var item in Model.Quiz)
+    {
+        
+        <div class="col-xl-4 col-lg-4 pb-4">
+            <div class="card">
+                <div class="card-header font-weight-bold h3">
+                    @if (item.Questions.Count == 0|| item.Questions.Any(x => x.Choices.Count == 0))
+                    {
+                        <div class="text-danger">@item.Name</div>
+                    }
+                    else
+                    {
+                        <a class="disabled" asp-page="/Questions/Index" asp-route-personId="@Model.PersonId" asp-route-id="@item.QuizId">@item.Name</a>
+                        
+                    }
+                </div>
+                <div class="card-body">
+                    <div class="card-text mx-2 mb-3">@item.Description</div>
+                    <div class="text-center">
+                        <div class="btn-group btn-group-justified mt-3" style="min-width: 100%">
+                            <a class="inner btn btn-info" asp-page="./Details" asp-route-id="@item.QuizId">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+    
+
