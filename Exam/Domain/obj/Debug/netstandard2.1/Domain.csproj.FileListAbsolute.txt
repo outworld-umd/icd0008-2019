@@ -1,8 +1,0 @@
-C:\Users\artjo\RiderProjects\icd0008-2019f\Exam\Domain\bin\Debug\netstandard2.1\Domain.deps.json
-C:\Users\artjo\RiderProjects\icd0008-2019f\Exam\Domain\bin\Debug\netstandard2.1\Domain.dll
-C:\Users\artjo\RiderProjects\icd0008-2019f\Exam\Domain\bin\Debug\netstandard2.1\Domain.pdb
-C:\Users\artjo\RiderProjects\icd0008-2019f\Exam\Domain\obj\Debug\netstandard2.1\Domain.csprojAssemblyReference.cache
-C:\Users\artjo\RiderProjects\icd0008-2019f\Exam\Domain\obj\Debug\netstandard2.1\Domain.AssemblyInfoInputs.cache
-C:\Users\artjo\RiderProjects\icd0008-2019f\Exam\Domain\obj\Debug\netstandard2.1\Domain.AssemblyInfo.cs
-C:\Users\artjo\RiderProjects\icd0008-2019f\Exam\Domain\obj\Debug\netstandard2.1\Domain.dll
-C:\Users\artjo\RiderProjects\icd0008-2019f\Exam\Domain\obj\Debug\netstandard2.1\Domain.pdb
